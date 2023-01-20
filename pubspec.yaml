@@ -25,6 +25,9 @@ dependencies:
   cupertino_icons: ^0.1.2
   flashy_tab_bar2: ^0.0.6
   get_it: ^7.2.0
+  fluttertoast: ^8.1.2
+  connectivity_wrapper: ^1.1.1
+  flutter_side_menu: ^0.2.0
 
 dev_dependencies:
   flutter_test:

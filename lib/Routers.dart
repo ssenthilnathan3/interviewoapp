@@ -1,6 +1,7 @@
 import 'package:interviewo/screens/DiscoverPage.dart';
 import 'package:interviewo/screens/ExplorePage.dart';
-import 'package:interviewo/views/home.dart';
+import 'package:interviewo/screens/HomePage.dart';
+
 import 'package:flutter/material.dart';
 
 class Routers {

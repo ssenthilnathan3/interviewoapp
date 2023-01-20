@@ -1,3 +1,6 @@
+import 'package:interviewo/components/BottomBar.dart';
+import 'package:interviewo/components/CardWidget.dart';
+import 'package:interviewo/components/drawer/custom_drawer.dart';
 import 'package:interviewo/data/data.dart';
 import 'package:interviewo/model/speciality.dart';
 import 'package:interviewo/services/NavigationService.dart';
@@ -27,44 +30,16 @@ class _HomePageState extends State<HomePage> {
     specialities = getSpeciality();
   }
 
-  FlashyTabBarItem _buildItem(Icon icon, String title) {
-    return FlashyTabBarItem(
-      icon: icon,
-      title: Text(title),
-    );
-  }
-
-  var _selectedIndex = 1;
-  var _tabs = ["/explore", "/home", "/discover"];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0.0,
-        brightness: Brightness.light,
         iconTheme: IconThemeData(color: Colors.black87),
       ),
-      bottomNavigationBar: FlashyTabBar(
-        iconSize: 25,
-        selectedIndex: _selectedIndex,
-        height: 55,
-        showElevation: false,
-        onItemSelected: (index) {
-          setState(() {
-            _selectedIndex = index;
-          });
-          _navigationService.navigateTo(_tabs[_selectedIndex]);
-        },
-        items: [
-          _buildItem(Icon(Icons.explore), "Explore"),
-          _buildItem(Icon(Icons.home), "Home"),
-          _buildItem(Icon(Icons.search), "Discover")
-        ],
-      ),
-      drawer: Drawer(child: Container() // Populate the Drawer in the next step.
-          ),
+      bottomNavigationBar: BottomBar(),
+      drawer: CustomDrawer(),
       body: SingleChildScrollView(
         child: Container(
           color: Colors.white,
@@ -164,7 +139,7 @@ class _HomePageState extends State<HomePage> {
               SizedBox(
                 height: 20,
               ),
-              DoctorsTile()
+              DoctorsTile(),
             ],
           ),
         ),
