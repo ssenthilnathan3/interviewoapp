@@ -1,11 +1,16 @@
-import 'package:interviewo/components/BottomBar.dart';
+import 'package:getwidget/getwidget.dart';
+import 'package:google_nav_bar/google_nav_bar.dart';
+
 import 'package:interviewo/components/CardWidget.dart';
+import 'package:interviewo/components/Model.dart';
 import 'package:interviewo/components/drawer/custom_drawer.dart';
 import 'package:interviewo/data/data.dart';
 import 'package:interviewo/model/speciality.dart';
+import 'package:interviewo/screens/DiscoverPage.dart';
+import 'package:interviewo/screens/ExplorePage.dart';
 import 'package:interviewo/services/NavigationService.dart';
 import 'package:interviewo/utils/Locator.dart';
-import 'package:interviewo/views/doctor_info.dart';
+
 import 'package:flashy_tab_bar2/flashy_tab_bar2.dart';
 import 'package:flutter/material.dart';
 
@@ -21,12 +26,14 @@ class _HomePageState extends State<HomePage> {
   final NavigationService _navigationService = locator<NavigationService>();
 
   late List<SpecialityModel> specialities;
+  late List<PlaceModel> places;
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
 
+    places = getPlace();
     specialities = getSpeciality();
   }
 
@@ -38,7 +45,6 @@ class _HomePageState extends State<HomePage> {
         elevation: 0.0,
         iconTheme: IconThemeData(color: Colors.black87),
       ),
-      bottomNavigationBar: BottomBar(),
       drawer: CustomDrawer(),
       body: SingleChildScrollView(
         child: Container(
@@ -130,7 +136,7 @@ class _HomePageState extends State<HomePage> {
                 height: 20,
               ),
               Text(
-                "Doctos",
+                "Doctors",
                 style: TextStyle(
                     color: Colors.black87.withOpacity(0.8),
                     fontSize: 25,
@@ -139,7 +145,22 @@ class _HomePageState extends State<HomePage> {
               SizedBox(
                 height: 20,
               ),
-              DoctorsTile(),
+              SizedBox(
+                height: 20,
+              ),
+              Container(
+                height: 200,
+                child: ListView.builder(
+                    itemCount: places.length,
+                    shrinkWrap: true,
+                    physics: ClampingScrollPhysics(),
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (context, index) {
+                      return FeaturedCard(
+                        placeModel: places[index],
+                      );
+                    }),
+              ),
             ],
           ),
         ),
@@ -227,64 +248,6 @@ class SpecialistTile extends StatelessWidget {
             fit: BoxFit.fitHeight,
           )
         ],
-      ),
-    );
-  }
-}
-
-class DoctorsTile extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => DoctorsInfo()));
-      },
-      child: Container(
-        decoration: BoxDecoration(
-            color: Color(0xffFFEEE0), borderRadius: BorderRadius.circular(20)),
-        padding: EdgeInsets.symmetric(horizontal: 24, vertical: 18),
-        child: Row(
-          children: <Widget>[
-            Image.asset(
-              "assets/doctor_pic.png",
-              height: 50,
-            ),
-            SizedBox(
-              width: 17,
-            ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Text(
-                  "Dr. Stefeni Albert",
-                  style: TextStyle(color: Color(0xffFC9535), fontSize: 19),
-                ),
-                SizedBox(
-                  height: 2,
-                ),
-                Text(
-                  "Heart Speailist",
-                  style: TextStyle(fontSize: 15),
-                )
-              ],
-            ),
-            Spacer(),
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 15, vertical: 9),
-              decoration: BoxDecoration(
-                  color: Color(0xffFBB97C),
-                  borderRadius: BorderRadius.circular(13)),
-              child: Text(
-                "Call",
-                style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 13,
-                    fontWeight: FontWeight.w500),
-              ),
-            )
-          ],
-        ),
       ),
     );
   }

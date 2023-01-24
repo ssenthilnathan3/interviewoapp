@@ -1,3 +1,4 @@
+import 'package:interviewo/screens/DetailPage.dart';
 import 'package:interviewo/screens/DiscoverPage.dart';
 import 'package:interviewo/screens/ExplorePage.dart';
 import 'package:interviewo/screens/HomePage.dart';
@@ -14,6 +15,8 @@ class Routers {
         return MaterialPageRoute(builder: (_) => ExplorePage());
       case '/discover':
         return MaterialPageRoute(builder: (_) => DiscoverPage());
+      case '/details':
+        return MaterialPageRoute(builder: (context) => ViewDetails());
       // ********** Default Route ***************************//
       default:
         return MaterialPageRoute(
