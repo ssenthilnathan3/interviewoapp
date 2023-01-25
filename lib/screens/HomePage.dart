@@ -41,14 +41,14 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.white10,
         elevation: 0.0,
         iconTheme: IconThemeData(color: Colors.black87),
       ),
       drawer: CustomDrawer(),
       body: SingleChildScrollView(
         child: Container(
-          color: Colors.white,
+          color: Colors.white10,
           padding: EdgeInsets.symmetric(vertical: 10, horizontal: 24),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -197,7 +197,7 @@ class _CategorieTileState extends State<CategorieTile> {
         margin: EdgeInsets.only(left: 8),
         height: 30,
         decoration: BoxDecoration(
-            color: widget.isSelected ? Color(0xffFFD0AA) : Colors.white,
+            color: widget.isSelected ? Color(0xffFFD0AA) : Colors.white10,
             borderRadius: BorderRadius.circular(30)),
         child: Text(
           widget.categorie,
@@ -233,14 +233,14 @@ class SpecialistTile extends StatelessWidget {
         children: <Widget>[
           Text(
             speciality,
-            style: TextStyle(color: Colors.white, fontSize: 20),
+            style: TextStyle(color: Colors.white10, fontSize: 20),
           ),
           SizedBox(
             height: 6,
           ),
           Text(
             "$noOfDoctors Doctors",
-            style: TextStyle(color: Colors.white, fontSize: 13),
+            style: TextStyle(color: Colors.white10, fontSize: 13),
           ),
           Image.asset(
             imgAssetPath,

@@ -12,7 +12,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  Widget tabBody = Container(color: Colors.white, child: HomePage());
+  Widget tabBody = Container(color: Colors.white10, child: HomePage());
   int position = 1;
 
   bottomBarCallBack(newWidget) {

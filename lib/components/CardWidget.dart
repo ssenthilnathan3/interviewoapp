@@ -96,7 +96,7 @@ class _FeaturedCardState extends State<FeaturedCard> {
   }
 }
 
-Widget Rating({required double rating, Color color = Colors.white}) {
+Widget Rating({required double rating, Color color = Colors.white10}) {
   return Container(
     padding: EdgeInsets.zero,
     margin: EdgeInsets.zero,

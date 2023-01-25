@@ -20,7 +20,7 @@ class CustomDrawerHeader extends StatelessWidget {
             child: Text(
               'InterviewO',
               style: TextStyle(
-                color: Colors.white,
+                color: Colors.white10,
                 fontWeight: FontWeight.bold,
                 fontSize: 20,
               ),
@@ -33,7 +33,7 @@ class CustomDrawerHeader extends StatelessWidget {
               onPressed: () {},
               icon: const Icon(
                 Icons.search,
-                color: Colors.white,
+                color: Colors.white10,
               ),
             ),
           ),

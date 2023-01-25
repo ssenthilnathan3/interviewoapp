@@ -32,7 +32,7 @@ class OfflineWidget extends StatelessWidget {
                 onPressed: () {},
                 child: Text(
                   "retry".toUpperCase(),
-                  style: TextStyle(color: Colors.white),
+                  style: TextStyle(color: Colors.white10),
                 ),
               ),
             ),

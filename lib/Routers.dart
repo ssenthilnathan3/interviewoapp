@@ -16,7 +16,7 @@ class Routers {
       case '/discover':
         return MaterialPageRoute(builder: (_) => DiscoverPage());
       case '/details':
-        return MaterialPageRoute(builder: (context) => ViewDetails());
+        return MaterialPageRoute(builder: (context) => CourseInfoScreen());
       // ********** Default Route ***************************//
       default:
         return MaterialPageRoute(

@@ -15,7 +15,7 @@ class BottomUserInfo extends StatelessWidget {
       height: isCollapsed ? 70 : 100,
       width: double.infinity,
       decoration: BoxDecoration(
-        color: Colors.white10,
+        color: Colors.white,
         borderRadius: BorderRadius.circular(20),
       ),
       child: isCollapsed
@@ -53,7 +53,7 @@ class BottomUserInfo extends StatelessWidget {
                             child: Text(
                               'User Name',
                               style: TextStyle(
-                                color: Colors.white,
+                                color: Colors.white10,
                                 fontWeight: FontWeight.bold,
                                 fontSize: 18,
                               ),
@@ -84,7 +84,7 @@ class BottomUserInfo extends StatelessWidget {
                         onPressed: () {},
                         icon: const Icon(
                           Icons.logout,
-                          color: Colors.white,
+                          color: Colors.white10,
                         ),
                       ),
                     ),
@@ -117,7 +117,7 @@ class BottomUserInfo extends StatelessWidget {
                     onPressed: () {},
                     icon: const Icon(
                       Icons.logout,
-                      color: Colors.white,
+                      color: Colors.white10,
                       size: 18,
                     ),
                   ),

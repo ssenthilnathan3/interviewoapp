@@ -28,14 +28,14 @@ class CustomListTile extends StatelessWidget {
               child: Row(children: [
                 Icon(
                   icon,
-                  color: Colors.white,
+                  color: Colors.white10,
                   size: 30,
                 ),
                 Padding(
                   padding: const EdgeInsets.only(left: 20.0),
                   child: Text(title,
                       style: TextStyle(
-                          color: Colors.white, fontWeight: FontWeight.bold)),
+                          color: Colors.white10, fontWeight: FontWeight.bold)),
                 ),
               ]),
               onTap: () {
