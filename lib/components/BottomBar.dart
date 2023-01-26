@@ -56,7 +56,7 @@ class _BottomBarState extends State<BottomBar> {
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
-          color: Colors.white10,
+          color: Colors.white,
           boxShadow: [
             BoxShadow(
               blurRadius: 10,
