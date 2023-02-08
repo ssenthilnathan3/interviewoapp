@@ -56,7 +56,7 @@ class _HomeScreenState extends State<HomeScreen> {
           changeIndex(drawerIndexdata);
           //callback from drawer for replace screen as user need with passing DrawerIndex(Enum index)
         },
-        screenView: screenView,
+        screenView: tabBody,
         //we replace screen view as we need on navigate starting screens like MyHomePage, HelpScreen, FeedbackScreen, etc...
       ),
       Positioned(
