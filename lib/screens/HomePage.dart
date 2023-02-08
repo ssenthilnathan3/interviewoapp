@@ -43,7 +43,7 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         backgroundColor: Colors.white10,
         elevation: 0.0,
-        iconTheme: IconThemeData(color: Colors.black87),
+        iconTheme: IconThemeData(color: Colors.black),
       ),
       drawer: HomeDrawer(),
       body: SingleChildScrollView(
@@ -55,16 +55,6 @@ class _HomePageState extends State<HomePage> {
             children: <Widget>[
               SizedBox(
                 height: 10,
-              ),
-              Text(
-                "Find Your \nConsultation",
-                style: TextStyle(
-                    color: Colors.black87.withOpacity(0.8),
-                    fontSize: 30,
-                    fontWeight: FontWeight.w600),
-              ),
-              SizedBox(
-                height: 40,
               ),
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 24),

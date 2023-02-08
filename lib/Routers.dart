@@ -1,9 +1,9 @@
-import 'package:interviewo/screens/DetailPage.dart';
 import 'package:interviewo/screens/DiscoverPage.dart';
 import 'package:interviewo/screens/ExplorePage.dart';
 import 'package:interviewo/screens/HomePage.dart';
 
 import 'package:flutter/material.dart';
+import 'package:interviewo/screens/auth/LoginPage.dart';
 
 class Routers {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -15,8 +15,8 @@ class Routers {
         return MaterialPageRoute(builder: (_) => ExplorePage());
       case '/discover':
         return MaterialPageRoute(builder: (_) => DiscoverPage());
-      case '/details':
-        return MaterialPageRoute(builder: (_) => CourseInfoScreen());
+      case '/login':
+        return MaterialPageRoute(builder: (_) => LoginScreen());
 
       // ********** Default Route ***************************//
       default:
