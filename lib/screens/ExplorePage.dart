@@ -3,6 +3,10 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter/widgets.dart';
+import 'package:interviewo/data/Food.dart';
+import 'package:interviewo/screens/DetailPage.dart';
+import 'package:interviewo/services/NavigationService.dart';
+import 'package:interviewo/utils/Locator.dart';
 
 class ExplorePage extends StatefulWidget {
   const ExplorePage({Key? key}) : super(key: key);
@@ -12,6 +16,7 @@ class ExplorePage extends StatefulWidget {
 }
 
 class _ExplorePageState extends State<ExplorePage> {
+  final NavigationService _navigationService = locator<NavigationService>();
   final List<String> _listItem = [
     'assets/images/two.jpg',
     'assets/images/three.jpg',
@@ -23,6 +28,16 @@ class _ExplorePageState extends State<ExplorePage> {
     'assets/images/four.jpg',
     'assets/images/five.jpg',
   ];
+  var foodList = [];
+  void getFoods() async {
+    foodList = await bringTheFoods();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getFoods();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -95,7 +110,13 @@ class _ExplorePageState extends State<ExplorePage> {
                 crossAxisSpacing: 10,
                 mainAxisSpacing: 10,
                 children: _listItem
-                    .map((item) => Card(
+                    .map((item) => GestureDetector(
+                        onTap: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => FoodDetailView(
+                                  food: foodList[_listItem.indexOf(item)])));
+                        },
+                        child: Card(
                           color: Colors.transparent,
                           elevation: 0,
                           child: Container(
@@ -119,7 +140,7 @@ class _ExplorePageState extends State<ExplorePage> {
                               ),
                             ),
                           ),
-                        ))
+                        )))
                     .toList(),
               ))
             ],

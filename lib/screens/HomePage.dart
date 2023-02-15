@@ -13,6 +13,7 @@ import 'package:interviewo/services/NavigationService.dart';
 import 'package:interviewo/utils/Locator.dart';
 
 import 'package:flutter/material.dart';
+import 'package:interviewo/utils/constants.dart';
 
 String selectedCategorie = "Adults";
 
@@ -41,11 +42,10 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white10,
-        elevation: 0.0,
-        iconTheme: IconThemeData(color: Colors.black),
+        automaticallyImplyLeading: false,
+        iconTheme: IconThemeData(color: IOTheme().IOBlue),
+        backgroundColor: IOTheme().IOBlue,
       ),
-      drawer: HomeDrawer(),
       body: SingleChildScrollView(
         child: Container(
           color: Colors.white10,
@@ -53,9 +53,6 @@ class _HomePageState extends State<HomePage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              SizedBox(
-                height: 10,
-              ),
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 24),
                 height: 50,

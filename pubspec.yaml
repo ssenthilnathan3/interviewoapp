@@ -38,6 +38,8 @@ dependencies:
   firebase_analytics: ^10.0.6
   firebase_dynamic_links: ^5.0.1
   equatable: ^2.0.5
+  firebase_auth: ^4.2.6
+  google_sign_in: ^5.4.4
 
   #service plugins
   connectivity_wrapper: ^1.1.1
@@ -45,6 +47,7 @@ dependencies:
   shared_preferences: ^2.0.17
   device_info_plus:  ^3.2.4
   package_info_plus: any
+  
 
 dev_dependencies:
   flutter_test:

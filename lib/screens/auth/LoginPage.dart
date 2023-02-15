@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:interviewo/screens/auth/RegisterPage.dart';
 import 'package:interviewo/utils/constants.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -152,18 +153,21 @@ class LoginScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 30),
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.of(context).pushReplacement(MaterialPageRoute(
+                          builder: (context) => RegisterScreen()));
+                    },
                     child: Text.rich(
                       TextSpan(
                           text: "Don't have an account?",
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 20,
-                              color: Color.fromARGB(142, 255, 255, 255)),
-                          children: const [
+                              color: IOTheme().IOBlue),
+                          children: [
                             TextSpan(
                                 text: " \tSignup",
-                                style: TextStyle(color: Colors.white))
+                                style: TextStyle(color: IOTheme().IOBlue))
                           ]),
                     ),
                   ),

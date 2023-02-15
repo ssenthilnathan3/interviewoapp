@@ -10,6 +10,7 @@ import 'package:interviewo/screens/HomePage.dart';
 
 import 'package:interviewo/services/NavigationService.dart';
 import 'package:interviewo/utils/Locator.dart';
+import 'package:interviewo/utils/constants.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:interviewo/utils/constants.dart';
 
 class HomeDrawer extends StatefulWidget {
   const HomeDrawer(
@@ -52,7 +53,6 @@ class _HomeDrawerState extends State<HomeDrawer> {
     var brightness = MediaQuery.of(context).platformBrightness;
     bool isLightMode = brightness == Brightness.light;
     return Scaffold(
-      
       backgroundColor: Colors.white,
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -178,7 +178,7 @@ class _HomeDrawerState extends State<HomeDrawer> {
       color: Colors.transparent,
       child: InkWell(
         splashColor: Colors.grey.withOpacity(0.1),
-        highlightColor: Colors.transparent,
+        highlightColor: IOTheme().IOBlue,
         onTap: () {
           navigationtoScreen(listData.index!);
         },
@@ -251,8 +251,7 @@ class _HomeDrawerState extends State<HomeDrawer> {
                         child: Padding(
                           padding: EdgeInsets.only(top: 8, bottom: 8),
                           child: Container(
-                            width:
-                                MediaQuery.of(context).size.width * 0.75 - 64,
+                            width: 250,
                             height: 46,
                             decoration: BoxDecoration(
                               color: Colors.blue.withOpacity(0.2),
