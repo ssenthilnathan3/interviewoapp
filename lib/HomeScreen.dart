@@ -1,29 +1,18 @@
+import 'package:connectivity_wrapper/connectivity_wrapper.dart';
 import 'package:flutter/material.dart';
-
-import 'package:interviewo/components/BottomBar.dart';
-import 'package:interviewo/components/drawer/drawer_1.dart';
-import 'package:interviewo/components/drawer/drawer_controller.dart';
-import 'package:interviewo/screens/DiscoverPage.dart';
-import 'package:interviewo/screens/ExplorePage.dart';
-
-import 'package:interviewo/screens/HomePage.dart';
-
-import 'package:interviewo/services/NavigationService.dart';
-import 'package:interviewo/utils/Locator.dart';
-import 'package:interviewo/utils/constants.dart';
+import 'package:interviewo/screens/tabs/HomePage.dart';
+import 'package:interviewo/widgets/BottomBar.dart';
+import 'package:interviewo/widgets/OfflineWidget.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
-
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  _HomeScreenState createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  Widget tabBody = Container(color: Colors.white10, child: HomePage());
-  int position = 1;
-
-  final NavigationService _navigationService = locator<NavigationService>();
+  Widget tabBody = Container(child: HomePage());
+  int position = 0;
+  bool isUpdateShown = false;
 
   bottomBarCallBack(newWidget) {
     setState(() {
@@ -37,63 +26,51 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
-  Widget? screenView;
-  DrawerIndex? drawerIndex;
-
-  @override
-  void initState() {
-    drawerIndex = DrawerIndex.ForPerson;
-    screenView = HomePage();
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
-    return Stack(children: [
-      DrawerUserController(
-        screenIndex: drawerIndex,
-        drawerWidth: MediaQuery.of(context).size.width * 0.75,
-        onDrawerCall: (DrawerIndex drawerIndexdata) {
-          changeIndex(drawerIndexdata);
-          //callback from drawer for replace screen as user need with passing DrawerIndex(Enum index)
-        },
-        screenView: tabBody,
-        //we replace screen view as we need on navigate starting screens like MyHomePage, HelpScreen, FeedbackScreen, etc...
+    return Container(
+      child: Scaffold(
+        // backgroundColor: Colors.transparent,
+        body: FutureBuilder<bool>(
+          future: getData(),
+          builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
+            if (!snapshot.hasData) {
+              return const SizedBox();
+            } else {
+              return ConnectivityWidgetWrapper(
+                disableInteraction: true,
+                offlineWidget: OfflineWidget(),
+                child: Stack(children: <Widget>[
+                  tabBody,
+                  Positioned(
+                      bottom: 0,
+                      height: 70,
+                      child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(Radius.circular(20)),
+                            color: Colors.white,
+                          ),
+                          width: MediaQuery.of(context).size.width)),
+                  Positioned(
+                    bottom: 0,
+                    height: 100,
+                    width: MediaQuery.of(context).size.width,
+                    child: BottomBar(
+                        bottomBarCallBack: bottomBarCallBack,
+                        positionCallBack: positionCallBack,
+                        position: position),
+                  ),
+                ]),
+              );
+            }
+          },
+        ),
       ),
-      Positioned(
-        bottom: 0,
-        width: MediaQuery.of(context).size.width,
-        child: BottomBar(
-            bottomBarCallBack: bottomBarCallBack,
-            positionCallBack: positionCallBack,
-            position: position),
-      )
-    ]);
+    );
   }
 
-  void changeIndex(DrawerIndex drawerIndexdata) {
-    if (drawerIndex != drawerIndexdata) {
-      drawerIndex = drawerIndexdata;
-      switch (drawerIndex) {
-        case DrawerIndex.ForPerson:
-          setState(() {
-            screenView = HomePage();
-          });
-          break;
-        case DrawerIndex.ForUniv:
-          _navigationService.navigateTo('/login');
-          break;
-        case DrawerIndex.ForJobs:
-          _navigationService.navigateTo('/login');
-          break;
-
-        case DrawerIndex.ForCorps:
-          _navigationService.navigateTo('/login');
-          break;
-
-        default:
-          break;
-      }
-    }
+  Future<bool> getData() async {
+    await Future<dynamic>.delayed(const Duration(milliseconds: 200));
+    return true;
   }
 }

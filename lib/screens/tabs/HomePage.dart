@@ -1,17 +1,9 @@
-import 'package:getwidget/getwidget.dart';
-import 'package:google_nav_bar/google_nav_bar.dart';
-
-import 'package:interviewo/components/CardWidget.dart';
-import 'package:interviewo/components/Model.dart';
-
-import 'package:interviewo/components/drawer/drawer_1.dart';
+import 'package:interviewo/widgets/CardWidget.dart';
+import 'package:interviewo/model/placemodel.dart';
 import 'package:interviewo/data/data.dart';
 import 'package:interviewo/model/speciality.dart';
-import 'package:interviewo/screens/DiscoverPage.dart';
-import 'package:interviewo/screens/ExplorePage.dart';
 import 'package:interviewo/services/NavigationService.dart';
 import 'package:interviewo/utils/Locator.dart';
-
 import 'package:flutter/material.dart';
 import 'package:interviewo/utils/constants.dart';
 

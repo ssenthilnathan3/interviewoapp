@@ -1,13 +1,10 @@
 import 'package:connectivity_wrapper/connectivity_wrapper.dart';
-import 'package:interviewo/HomeScreen.dart';
-
+import 'package:flutter/material.dart';
 import 'package:interviewo/Routers.dart';
-import 'package:interviewo/screens/HomePage.dart';
-
 import 'package:interviewo/services/NavigationService.dart';
 import 'package:interviewo/utils/Locator.dart';
-
-import 'package:flutter/material.dart';
+import 'package:interviewo/viewmodels/StartupViewModel.dart';
+import 'package:stacked/stacked.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -36,7 +33,38 @@ class _MyAppState extends State<MyApp> {
           theme: ThemeData(
             primarySwatch: Colors.blue,
           ),
-          home: HomeScreen()),
+          home: SplashScreen()),
     );
+  }
+}
+
+class SplashScreen extends StatefulWidget {
+  @override
+  _SplashScreenState createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen> {
+  @override
+  Widget build(BuildContext context) {
+    return ViewModelBuilder<StartUpViewModel>.reactive(
+        viewModelBuilder: () => StartUpViewModel(),
+        onModelReady: (viewModel) => viewModel.initialise(),
+        builder: (context, viewModel, child) {
+          return Scaffold(
+            body: Container(
+              child: Align(
+                  alignment: Alignment.center,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      Image.asset('assets/images/ChickenCurryPasta.jpg'),
+                      // width: 150.0, height: 150.0
+                      SizedBox(height: 10),
+                    ],
+                  )),
+            ),
+          );
+        });
   }
 }

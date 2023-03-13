@@ -1,4 +1,4 @@
-import 'package:interviewo/components/Model.dart';
+import 'package:interviewo/model/placemodel.dart';
 import 'package:interviewo/model/speciality.dart';
 import 'package:flutter/cupertino.dart';
 

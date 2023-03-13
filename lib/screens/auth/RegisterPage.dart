@@ -1,56 +1,64 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:interviewo/services/NavigationService.dart';
+import 'package:interviewo/utils/Locator.dart';
 import 'package:interviewo/utils/constants.dart';
 
-class RegisterScreen extends StatelessWidget {
-  RegisterScreen({Key? key}) : super(key: key);
-
-  final TextEditingController _name = TextEditingController();
-  final TextEditingController _password = TextEditingController();
+class RegisterScreen extends StatefulWidget {
+  const RegisterScreen({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    //Get the size in LoginHeaderWidget()
+  _RegisterScreenState createState() => _RegisterScreenState();
+}
 
-    final _formKey = GlobalKey<FormState>();
+class _RegisterScreenState extends State<RegisterScreen> {
+  final TextEditingController _name = TextEditingController();
+  final TextEditingController _email = TextEditingController();
+  final TextEditingController _password = TextEditingController();
+  final TextEditingController _mobile = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
+  bool _passwordVisible = false;
+  @override
+  Widget build(BuildContext context) {
+    final NavigationService _navigationService = locator<NavigationService>();
+
     return Stack(children: <Widget>[
-      Image.asset(
-        "assets/images/background1.jpeg",
-        height: MediaQuery.of(context).size.height,
-        width: MediaQuery.of(context).size.width,
-        fit: BoxFit.cover,
-      ),
       Scaffold(
         backgroundColor: Colors.white,
-        body: SingleChildScrollView(
-          child: Container(
-            padding: EdgeInsets.all(8.0),
+        body: Container(
+          padding: EdgeInsets.all(8.0),
+          child: SingleChildScrollView(
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Column(
-                  children: [
-                    // Image(
-                    //     image: const AssetImage('assets/cat.jpg'),
-                    //     height: MediaQuery.of(context).size.height * 0.2),
-                    SizedBox(height: MediaQuery.of(context).size.height * 0.2),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 30.0),
-                      child: Text("Login",
-                          style: TextStyle(
-                              fontSize: 50,
-                              fontWeight: FontWeight.bold,
-                              color: IOTheme().IOBlue)),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 20.0),
-                      child: Text("For You, By Us",
-                          style: TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white)),
-                    ),
-                  ],
+                SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.1),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 14.0),
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text("Register",
+                              style: TextStyle(
+                                  fontSize: 50,
+                                  fontWeight: FontWeight.bold,
+                                  color: IOTheme().IOBlue)),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 16.0),
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text("Connect with Us!",
+                              style: TextStyle(
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black)),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
                 Form(
                   key: _formKey,
@@ -61,6 +69,33 @@ class RegisterScreen extends StatelessWidget {
                       children: [
                         TextFormField(
                           controller: _name,
+                          cursorColor: Colors.white,
+                          decoration: InputDecoration(
+                            enabledBorder: OutlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: IOTheme().IOGreen)),
+                            prefixIcon: Icon(Icons.person_3_rounded),
+                            labelText: "Enter your Name",
+                            floatingLabelStyle:
+                                TextStyle(color: IOTheme().IOGreen),
+                            prefixIconColor: IOTheme().IOGreen,
+                            border: OutlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: IOTheme().IOGreen)),
+                            focusedBorder: OutlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: IOTheme().IOGreen)),
+                          ),
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please enter your Name';
+                            }
+                            return null;
+                          },
+                        ),
+                        const SizedBox(height: 20),
+                        TextFormField(
+                          controller: _email,
                           cursorColor: Colors.white,
                           decoration: InputDecoration(
                             enabledBorder: OutlineInputBorder(
@@ -87,10 +122,53 @@ class RegisterScreen extends StatelessWidget {
                         ),
                         const SizedBox(height: 20),
                         TextFormField(
+                          controller: _mobile,
+                          cursorColor: Colors.white,
+                          keyboardType: TextInputType.phone,
+                          decoration: InputDecoration(
+                            enabledBorder: OutlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: IOTheme().IOGreen)),
+                            prefixIcon: Icon(Icons.email_outlined),
+                            labelText: "Enter your Phone Number",
+                            floatingLabelStyle:
+                                TextStyle(color: IOTheme().IOGreen),
+                            prefixIconColor: IOTheme().IOGreen,
+                            border: OutlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: IOTheme().IOGreen)),
+                            focusedBorder: OutlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: IOTheme().IOGreen)),
+                          ),
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please enter valid mobile number';
+                            }
+                            return null;
+                          },
+                        ),
+                        const SizedBox(height: 20),
+                        TextFormField(
                           controller: _password,
-                          obscureText: true,
+                          obscureText: !_passwordVisible,
                           cursorColor: Colors.white,
                           decoration: InputDecoration(
+                            suffixIcon: IconButton(
+                              icon: Icon(
+                                // Based on passwordVisible state choose the icon
+                                _passwordVisible
+                                    ? Icons.visibility
+                                    : Icons.visibility_off,
+                                color: IOTheme().IOGreen,
+                              ),
+                              onPressed: () {
+                                // Update the state i.e. toogle the state of passwordVisible variable
+                                setState(() {
+                                  _passwordVisible = !_passwordVisible;
+                                });
+                              },
+                            ),
                             enabledBorder: OutlineInputBorder(
                                 borderSide:
                                     BorderSide(color: IOTheme().IOGreen)),
@@ -107,16 +185,7 @@ class RegisterScreen extends StatelessWidget {
                                     BorderSide(color: IOTheme().IOGreen)),
                           ),
                         ),
-                        const SizedBox(height: 10),
-                        Align(
-                          alignment: Alignment.centerRight,
-                          child: TextButton(
-                              onPressed: () {},
-                              child: Text("Forgot Password?",
-                                  style: TextStyle(
-                                      color: IOTheme().IOBlue,
-                                      fontWeight: FontWeight.bold))),
-                        ),
+                        const SizedBox(height: 20),
                         SizedBox(
                           width: double.infinity,
                           child: ElevatedButton(
@@ -129,7 +198,7 @@ class RegisterScreen extends StatelessWidget {
                                 backgroundColor:
                                     IOTheme().IOBlue.withOpacity(0.5)),
                             onPressed: () {},
-                            child: Text("LOGIN",
+                            child: Text("REGISTER",
                                 style: TextStyle(fontWeight: FontWeight.bold)),
                           ),
                         ),
@@ -161,24 +230,26 @@ class RegisterScreen extends StatelessWidget {
                                   IOTheme().IOBlue.withOpacity(0.5),
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(20))),
-                          label: const Text("Signin With Google",
+                          label: const Text("Connect With Google",
                               style: TextStyle(color: Colors.white)),
                         ),
                       ),
                     ),
                     const SizedBox(height: 30),
                     TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        _navigationService.navigateTo("/login");
+                      },
                       child: Text.rich(
                         TextSpan(
-                            text: "Don't have an account?",
+                            text: "Already an user?",
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 20,
                                 color: IOTheme().IOBlue),
                             children: [
                               TextSpan(
-                                  text: " \tSignup",
+                                  text: " \tLogin",
                                   style: TextStyle(color: IOTheme().IOBlue))
                             ]),
                       ),

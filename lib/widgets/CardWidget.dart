@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:interviewo/components/Model.dart';
+import 'package:interviewo/model/placemodel.dart';
 import 'package:interviewo/screens/DetailPage.dart';
 import 'package:interviewo/services/NavigationService.dart';
 import 'package:interviewo/utils/Locator.dart';

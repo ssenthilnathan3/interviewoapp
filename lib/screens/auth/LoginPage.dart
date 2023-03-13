@@ -1,19 +1,26 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:interviewo/screens/auth/RegisterPage.dart';
+import 'package:interviewo/services/NavigationService.dart';
+import 'package:interviewo/utils/Locator.dart';
 import 'package:interviewo/utils/constants.dart';
 
-class LoginScreen extends StatelessWidget {
-  LoginScreen({Key? key}) : super(key: key);
-
-  final TextEditingController _name = TextEditingController();
-  final TextEditingController _password = TextEditingController();
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    //Get the size in LoginHeaderWidget()
+  _LoginScreenState createState() => _LoginScreenState();
+}
 
-    final _formKey = GlobalKey<FormState>();
+class _LoginScreenState extends State<LoginScreen> {
+  final TextEditingController _name = TextEditingController();
+  final TextEditingController _password = TextEditingController();
+  bool _passwordVisible = false;
+  final _formKey = GlobalKey<FormState>();
+  @override
+  Widget build(BuildContext context) {
+    final NavigationService _navigationService = locator<NavigationService>();
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
@@ -42,7 +49,7 @@ class LoginScreen extends StatelessWidget {
                         style: TextStyle(
                             fontSize: 15,
                             fontWeight: FontWeight.bold,
-                            color: Colors.white)),
+                            color: IOTheme().IOBlue)),
                   ),
                 ],
               ),
@@ -79,9 +86,24 @@ class LoginScreen extends StatelessWidget {
                       const SizedBox(height: 20),
                       TextFormField(
                         controller: _password,
-                        obscureText: true,
-                        cursorColor: Colors.white,
+                        obscureText: !_passwordVisible,
+                        cursorColor: Colors.black,
                         decoration: InputDecoration(
+                          suffixIcon: IconButton(
+                            icon: Icon(
+                              // Based on passwordVisible state choose the icon
+                              _passwordVisible
+                                  ? Icons.visibility
+                                  : Icons.visibility_off,
+                              color: IOTheme().IOGreen,
+                            ),
+                            onPressed: () {
+                              // Update the state i.e. toogle the state of passwordVisible variable
+                              setState(() {
+                                _passwordVisible = !_passwordVisible;
+                              });
+                            },
+                          ),
                           enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(color: IOTheme().IOGreen)),
                           prefixIcon: Icon(Icons.password_outlined),
@@ -94,6 +116,12 @@ class LoginScreen extends StatelessWidget {
                           focusedBorder: OutlineInputBorder(
                               borderSide: BorderSide(color: IOTheme().IOGreen)),
                         ),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter valid password';
+                          }
+                          return null;
+                        },
                       ),
                       const SizedBox(height: 10),
                       Align(
@@ -115,7 +143,10 @@ class LoginScreen extends StatelessWidget {
                                   borderRadius: BorderRadius.circular(20)),
                               backgroundColor:
                                   IOTheme().IOBlue.withOpacity(0.5)),
-                          onPressed: () {},
+                          onPressed: () {
+                            _formKey.currentState!.save();
+                            _formKey.currentState!.validate();
+                          },
                           child: Text("LOGIN",
                               style: TextStyle(fontWeight: FontWeight.bold)),
                         ),
@@ -154,8 +185,7 @@ class LoginScreen extends StatelessWidget {
                   const SizedBox(height: 30),
                   TextButton(
                     onPressed: () {
-                      Navigator.of(context).pushReplacement(MaterialPageRoute(
-                          builder: (context) => RegisterScreen()));
+                      _navigationService.navigateTo("/register");
                     },
                     child: Text.rich(
                       TextSpan(

@@ -1,23 +1,26 @@
+import 'package:interviewo/HomeScreen.dart';
 import 'package:interviewo/screens/DetailPage.dart';
-import 'package:interviewo/screens/DiscoverPage.dart';
-import 'package:interviewo/screens/ExplorePage.dart';
-import 'package:interviewo/screens/HomePage.dart';
 
 import 'package:flutter/material.dart';
+import 'package:interviewo/screens/IntroScreen.dart';
 import 'package:interviewo/screens/auth/LoginPage.dart';
+import 'package:interviewo/screens/auth/RegisterPage.dart';
+import 'package:interviewo/screens/tabs/DiscoverPage.dart';
+import 'package:interviewo/screens/tabs/ExplorePage.dart';
+import 'package:interviewo/screens/tabs/HomePage.dart';
 
 class Routers {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
       // ********** Intro,Home,Commonpage,personal profile ***************************//
-      case '/home':
-        return MaterialPageRoute(builder: (_) => HomePage());
-      case '/explore':
-        return MaterialPageRoute(builder: (_) => ExplorePage());
-      case '/discover':
-        return MaterialPageRoute(builder: (_) => DiscoverPage());
       case '/login':
         return MaterialPageRoute(builder: (_) => LoginScreen());
+      case '/register':
+        return MaterialPageRoute(builder: (_) => RegisterScreen());
+      case '/home':
+        return MaterialPageRoute(builder: (_) => HomeScreen());
+      case '/intro-screen':
+        return MaterialPageRoute(builder: (_) => IntroScreen());
 
       // ********** Default Route ***************************//
       default:
