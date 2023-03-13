@@ -33,6 +33,7 @@ dependencies:
   hexcolor: ^3.0.1
   flutter_svg: ^1.1.6
   flutter_onboarding_slider: ^1.0.8
+  appinio_video_player: ^1.2.0
   # firebase plugins
   firebase_core:
   firebase_messaging: ^14.1.3
