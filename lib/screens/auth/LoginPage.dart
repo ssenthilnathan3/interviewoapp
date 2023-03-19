@@ -145,7 +145,9 @@ class _LoginScreenState extends State<LoginScreen> {
                                   IOTheme().IOBlue.withOpacity(0.5)),
                           onPressed: () {
                             _formKey.currentState!.save();
-                            _formKey.currentState!.validate();
+                            if (_formKey.currentState!.validate()) {
+                              _navigationService.navigateTo("/home");
+                            }
                           },
                           child: Text("LOGIN",
                               style: TextStyle(fontWeight: FontWeight.bold)),

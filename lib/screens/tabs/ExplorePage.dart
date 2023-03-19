@@ -142,7 +142,8 @@ class _ExplorePageState extends State<ExplorePage> {
                           ),
                         )))
                     .toList(),
-              ))
+              )),
+              SizedBox(height: 100)
             ],
           ),
         ));

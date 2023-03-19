@@ -3,6 +3,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:interviewo/screens/tabs/DiscoverPage.dart';
 import 'package:interviewo/screens/tabs/ExplorePage.dart';
 import 'package:interviewo/screens/tabs/HomePage.dart';
+import 'package:interviewo/screens/tabs/VideoPage.dart';
 import 'package:interviewo/utils/ToastMsg.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
@@ -25,7 +26,7 @@ class _BottomBarState extends State<BottomBar> {
 
   FToast? fToast;
 
-  int activeIndex = 0;
+  int activeIndex = 1;
 
   var iconData = <IconData>[
     Icons.explore,
@@ -42,7 +43,7 @@ class _BottomBarState extends State<BottomBar> {
   var currentTab = [
     ExplorePage(),
     HomePage(),
-    DiscoverPage(),
+    VideoInfo(),
   ];
 
   _onTap(int index) {
@@ -105,30 +106,9 @@ class _BottomBarState extends State<BottomBar> {
   }
 
   Future<bool> _handleWillPop() async {
-    if (activeIndex == 0) {
-      final _currentTime = DateTime.now().millisecondsSinceEpoch;
-
-      if (_lastTimeBackButtonWasTapped != null &&
-          (_currentTime - _lastTimeBackButtonWasTapped) < exitTimeInMillis) {
-        ScaffoldMessenger.of(context).removeCurrentSnackBar();
-        return true;
-      } else {
-        _lastTimeBackButtonWasTapped = DateTime.now().millisecondsSinceEpoch;
-        ScaffoldMessenger.of(context).removeCurrentSnackBar();
-        ScaffoldMessenger.of(context).showSnackBar(
-          _getExitToast(),
-        );
-        return false;
-      }
-    } else {
-      changeActiveIndex(0);
-      widget.bottomBarCallBack(currentTab[0]);
-      widget.positionCallBack(activeIndex);
-      return false;
-    }
-  }
-
-  _getExitToast() {
-    return ToastMsg("Press again to exit", fToast);
+    changeActiveIndex(1);
+    widget.bottomBarCallBack(currentTab[1]);
+    widget.positionCallBack(activeIndex);
+    return false;
   }
 }

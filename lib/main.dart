@@ -58,7 +58,7 @@ class _SplashScreenState extends State<SplashScreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
-                      Image.asset('assets/images/ChickenCurryPasta.jpg'),
+                      Image.asset('assets/images/splashscreen.png'),
                       // width: 150.0, height: 150.0
                       SizedBox(height: 10),
                     ],

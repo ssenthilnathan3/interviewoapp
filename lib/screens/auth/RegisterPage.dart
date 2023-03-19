@@ -184,6 +184,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 borderSide:
                                     BorderSide(color: IOTheme().IOGreen)),
                           ),
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please enter valid password';
+                            }
+                            return null;
+                          },
                         ),
                         const SizedBox(height: 20),
                         SizedBox(
@@ -197,7 +203,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     borderRadius: BorderRadius.circular(20)),
                                 backgroundColor:
                                     IOTheme().IOBlue.withOpacity(0.5)),
-                            onPressed: () {},
+                            onPressed: () {
+                              _formKey.currentState!.save();
+                              if (_formKey.currentState!.validate()) {
+                                _navigationService.navigateTo("/home");
+                              }
+                            },
                             child: Text("REGISTER",
                                 style: TextStyle(fontWeight: FontWeight.bold)),
                           ),

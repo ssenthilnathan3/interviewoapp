@@ -25,15 +25,14 @@ class StartUpViewModel extends BaseModel {
 
         // print(isdeeplink);
         // if (!isdeeplink) {
-        if (introScreen) {
-          // _navigationService.navigateWithReplace('/commonPage');
 
-          _navigationService.navigateWithReplace('/intro-screen');
+        // _navigationService.navigateWithReplace('/commonPage');
 
-          // } else {
-          //   _navigationService.navigateWithReplace('/commonPage');
-          // }
-        }
+        _navigationService.navigateWithReplace('/intro-screen');
+
+        // } else {
+        //   _navigationService.navigateWithReplace('/commonPage');
+        // }
       }
     });
   }

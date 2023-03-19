@@ -2,6 +2,7 @@ import 'package:connectivity_wrapper/connectivity_wrapper.dart';
 import 'package:flutter/material.dart';
 import 'package:interviewo/screens/tabs/HomePage.dart';
 import 'package:interviewo/widgets/BottomBar.dart';
+import 'package:interviewo/widgets/DrawerWidget.dart';
 import 'package:interviewo/widgets/OfflineWidget.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -11,7 +12,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   Widget tabBody = Container(child: HomePage());
-  int position = 0;
+  int position = 1;
   bool isUpdateShown = false;
 
   bottomBarCallBack(newWidget) {
