@@ -4,6 +4,7 @@ import 'package:interviewo/screens/auth/RegisterPage.dart';
 import 'package:interviewo/services/NavigationService.dart';
 import 'package:interviewo/utils/Locator.dart';
 import 'package:interviewo/utils/constants.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -17,6 +18,11 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _password = TextEditingController();
   bool _passwordVisible = false;
   final _formKey = GlobalKey<FormState>();
+  _saveLogin() async {
+    SharedPreferences _prefs = await SharedPreferences.getInstance();
+    _prefs.setBool("isLoggedIn", true);
+  }
+
   @override
   Widget build(BuildContext context) {
     final NavigationService _navigationService = locator<NavigationService>();
@@ -172,7 +178,9 @@ class _LoginScreenState extends State<LoginScreen> {
                       child: OutlinedButton.icon(
                         icon: const Image(
                             image: AssetImage("assets/google.png"), height: 20),
-                        onPressed: () {},
+                        onPressed: () {
+                          _navigationService.navigateTo('/googleAuth');
+                        },
                         style: OutlinedButton.styleFrom(
                             fixedSize: Size(
                                 MediaQuery.of(context).size.width * 0.2, 50),

@@ -3,6 +3,7 @@ import 'package:interviewo/screens/DetailPage.dart';
 
 import 'package:flutter/material.dart';
 import 'package:interviewo/screens/IntroScreen.dart';
+import 'package:interviewo/screens/auth/GoogleAuth.dart';
 import 'package:interviewo/screens/auth/LoginPage.dart';
 import 'package:interviewo/screens/auth/RegisterPage.dart';
 import 'package:interviewo/screens/tabs/DiscoverPage.dart';
@@ -21,6 +22,8 @@ class Routers {
         return MaterialPageRoute(builder: (_) => HomeScreen());
       case '/intro-screen':
         return MaterialPageRoute(builder: (_) => IntroScreen());
+      case '/googleAuth':
+        return MaterialPageRoute(builder: (_) => GoogleSignInPage());
 
       // ********** Default Route ***************************//
       default:

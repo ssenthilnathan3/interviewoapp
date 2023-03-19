@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:interviewo/services/NavigationService.dart';
 import 'package:interviewo/utils/Locator.dart';
 import 'package:interviewo/utils/constants.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({Key? key}) : super(key: key);
@@ -18,6 +19,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final TextEditingController _mobile = TextEditingController();
   final _formKey = GlobalKey<FormState>();
   bool _passwordVisible = false;
+  _saveRegister() async {
+    SharedPreferences _prefs = await SharedPreferences.getInstance();
+    _prefs.setBool("isRegistered", true);
+
+    _prefs.setString("name", _name.text);
+    _prefs.setString("email", _email.text);
+    _prefs.setString("password", _password.text);
+    _prefs.setString("mobile", _mobile.text);
+  }
+
   @override
   Widget build(BuildContext context) {
     final NavigationService _navigationService = locator<NavigationService>();
@@ -207,6 +218,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               _formKey.currentState!.save();
                               if (_formKey.currentState!.validate()) {
                                 _navigationService.navigateTo("/home");
+                                _saveRegister();
                               }
                             },
                             child: Text("REGISTER",
@@ -233,7 +245,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           icon: const Image(
                               image: AssetImage("assets/google.png"),
                               height: 20),
-                          onPressed: () {},
+                          onPressed: () {
+                            _navigationService.navigateTo('/googleAuth');
+                          },
                           style: OutlinedButton.styleFrom(
                               fixedSize: Size(
                                   MediaQuery.of(context).size.width * 0.2, 50),

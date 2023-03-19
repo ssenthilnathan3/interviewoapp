@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:video_player/video_player.dart';
 import 'package:interviewo/utils/colors.dart' as color;
+import 'package:appinio_video_player/appinio_video_player.dart';
 
 class VideoInfo extends StatefulWidget {
   const VideoInfo({Key? key}) : super(key: key);
@@ -21,6 +22,11 @@ class _VideoInfoState extends State<VideoInfo> {
   bool _disposed = false;
   int _isPlayingIndex = -1;
   VideoPlayerController? _controller;
+
+  late CustomVideoPlayerController _customVideoPlayerController;
+
+  final CustomVideoPlayerSettings _customVideoPlayerSettings =
+      const CustomVideoPlayerSettings();
 
   _initData() async {
     await DefaultAssetBundle.of(context)
@@ -212,7 +218,6 @@ class _VideoInfoState extends State<VideoInfo> {
                             color: color.AppColor.secondPageTopIconColor)
                       ])),
                   _playView(context),
-                  _controlView(context)
                 ])),
           Expanded(
               child: Container(
@@ -292,95 +297,16 @@ class _VideoInfoState extends State<VideoInfo> {
     return AspectRatio(
         aspectRatio: 16 / 9,
         child: Container(
-            height: 300, width: 300, child: VideoPlayer(_controller!)));
+            height: 300,
+            width: 300,
+            child: CustomVideoPlayer(
+              customVideoPlayerController: _customVideoPlayerController,
+            )));
     // final controller = _controller;
     // if (controller.value.isInitialized) {
     // } else {
     //   return Text("Being initialized!");
     // }
-  }
-
-  Widget _controlView(BuildContext context) {
-    final noMute = (_controller?.value.volume ?? 0) > 0;
-    return Container(
-      height: 100,
-      width: MediaQuery.of(context).size.width,
-      color: color.AppColor.gradientSecond,
-      child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-        InkWell(
-            child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-                child: Container(
-                  decoration: BoxDecoration(shape: BoxShape.circle, boxShadow: [
-                    BoxShadow(
-                        offset: Offset(0.0, 0.0),
-                        blurRadius: 4.0,
-                        color: Color.fromARGB(50, 0, 0, 0))
-                  ]),
-                  child: Icon(noMute ? Icons.volume_up : Icons.volume_off,
-                      color: Colors.white),
-                )),
-            onTap: () {
-              if (noMute) {
-                _controller?.setVolume(0);
-              } else {
-                _controller?.setVolume(1.0);
-              }
-              setState(() {});
-            }),
-        ElevatedButton(
-            style: ElevatedButton.styleFrom(elevation: 0),
-            onPressed: () async {
-              final index = _isPlayingIndex - 1;
-              if (index >= 0 && videoInfo.length >= 0) {
-                _onTapVideo(index);
-              } else {
-                Get.snackbar("Video List", "",
-                    snackPosition: SnackPosition.BOTTOM,
-                    icon: Icon(Icons.face, size: 30),
-                    backgroundColor: color.AppColor.gradientSecond,
-                    colorText: Colors.white,
-                    messageText: Text("No more videos in the list",
-                        style: TextStyle(fontSize: 20, color: Colors.white)));
-              }
-            },
-            child: Icon(Icons.fast_rewind, size: 36, color: Colors.white)),
-        ElevatedButton(
-            onPressed: () async {
-              if (_isPlaying) {
-                setState(() {
-                  _isPlaying = false;
-                });
-                _controller?.pause();
-              } else {
-                setState(() {
-                  _isPlaying = true;
-                });
-                _controller?.play();
-              }
-            },
-            style: ElevatedButton.styleFrom(elevation: 0),
-            child: Icon(_isPlaying ? Icons.pause : Icons.play_arrow_outlined,
-                size: 36, color: Colors.white)),
-        ElevatedButton(
-            onPressed: () async {
-              final index = _isPlayingIndex + 1;
-              if (index <= videoInfo.length - 1) {
-                _onTapVideo(index);
-              } else {
-                Get.snackbar("Video List", "",
-                    snackPosition: SnackPosition.BOTTOM,
-                    icon: Icon(Icons.face, size: 30),
-                    backgroundColor: color.AppColor.gradientSecond,
-                    colorText: Colors.white,
-                    messageText: Text("You have finished all the videos",
-                        style: TextStyle(fontSize: 20, color: Colors.white)));
-              }
-            },
-            style: ElevatedButton.styleFrom(elevation: 0),
-            child: Icon(Icons.fast_forward, size: 36, color: Colors.white))
-      ]),
-    );
   }
 
   var _onUpdateControllerTime;
@@ -419,14 +345,12 @@ class _VideoInfoState extends State<VideoInfo> {
       old.pause();
     }
     setState(() {});
-    controller
-      ..initialize().then((_) {
-        old?.dispose();
-        _isPlayingIndex = index;
-        _controller?.addListener(_onControllerUpdate);
-        _controller?.play();
-      });
-    setState(() {});
+    controller..initialize().then((_) => setState(() {}));
+    _customVideoPlayerController = CustomVideoPlayerController(
+      context: context,
+      videoPlayerController: _controller!,
+      customVideoPlayerSettings: _customVideoPlayerSettings,
+    );
   }
 
   _buildCard(int index) {

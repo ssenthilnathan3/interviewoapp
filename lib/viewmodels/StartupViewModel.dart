@@ -23,16 +23,11 @@ class StartUpViewModel extends BaseModel {
         commonScreen = prefs.getBool("commonDataPage") ?? false;
         registerPage = prefs.getBool("registerPage") ?? false;
 
-        // print(isdeeplink);
-        // if (!isdeeplink) {
-
-        // _navigationService.navigateWithReplace('/commonPage');
-
-        _navigationService.navigateWithReplace('/intro-screen');
-
-        // } else {
-        //   _navigationService.navigateWithReplace('/commonPage');
-        // }
+        if (introScreen) {
+          _navigationService.navigateTo('/home');
+        } else {
+          _navigationService.navigateTo('/intro-screen');
+        }
       }
     });
   }
