@@ -35,7 +35,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        automaticallyImplyLeading: false,
+        // automaticallyImplyLeading: false,
         iconTheme: IconThemeData(color: Colors.white),
         backgroundColor: IOTheme().IOBlue,
       ),

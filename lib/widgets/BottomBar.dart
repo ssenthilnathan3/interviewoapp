@@ -11,20 +11,21 @@ class BottomBar extends StatefulWidget {
   final Function bottomBarCallBack;
   final Function positionCallBack;
   final int position;
-  const BottomBar(
+  Widget? w;
+  BottomBar(
       {required this.bottomBarCallBack,
       required this.positionCallBack,
-      required this.position});
+      required this.position,
+      this.w});
 
   @override
   _BottomBarState createState() => _BottomBarState();
 }
 
 class _BottomBarState extends State<BottomBar> {
-  int _lastTimeBackButtonWasTapped = 0;
-  static const exitTimeInMillis = 2000;
-
+  Widget? _w;
   FToast? fToast;
+  var currentTab;
 
   int activeIndex = 1;
 
@@ -40,11 +41,22 @@ class _BottomBarState extends State<BottomBar> {
     });
   }
 
-  var currentTab = [
-    ExplorePage(),
-    HomePage(),
-    VideoInfo(),
-  ];
+  @override
+  void initState() {
+    setState(() {
+      currentTab = [
+        ExplorePage(),
+        widget.w,
+        VideoInfo(),
+      ];
+    });
+
+    print(widget.position);
+    activeIndex = widget.position;
+    super.initState();
+    fToast = FToast();
+    fToast!.init(context);
+  }
 
   _onTap(int index) {
     setState(() {
@@ -58,15 +70,6 @@ class _BottomBarState extends State<BottomBar> {
     setState(() {
       activeIndex = index;
     });
-  }
-
-  @override
-  void initState() {
-    print(widget.position);
-    activeIndex = widget.position;
-    super.initState();
-    fToast = FToast();
-    fToast!.init(context);
   }
 
   @override

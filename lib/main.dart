@@ -1,4 +1,5 @@
 import 'package:connectivity_wrapper/connectivity_wrapper.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:interviewo/Routers.dart';
 import 'package:interviewo/services/NavigationService.dart';
@@ -25,15 +26,19 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return ConnectivityAppWrapper(
       app: MaterialApp(
-          title: 'Flutter Demo',
-          onGenerateRoute: Routers.generateRoute,
-          navigatorKey: locator<NavigationService>().navigationKey,
-          initialRoute: '/',
-          debugShowCheckedModeBanner: false,
-          theme: ThemeData(
-            primarySwatch: Colors.blue,
-          ),
-          home: SplashScreen()),
+        title: 'Flutter Demo',
+        onGenerateRoute: Routers.generateRoute,
+        navigatorKey: locator<NavigationService>().navigationKey,
+        initialRoute: '/',
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        home: SplashScreen(),
+        // locale: context.locale,
+        // supportedLocales: context.supportedLocales,
+        // localizationsDelegates: context.localizationDelegates,
+      ),
     );
   }
 }

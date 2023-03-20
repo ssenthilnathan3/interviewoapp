@@ -8,10 +8,8 @@ class StartUpViewModel extends BaseModel {
   final NavigationService _navigationService = locator<NavigationService>();
 
   bool introScreen = false;
-  bool commonScreen = false;
-  bool registerPage = false;
-  // bool isdeeplink = false;
-  // bool isUpdateShown = false;
+  bool selectionPage = false;
+  String? pageType = "";
 
   void initialise() {
     // handleStartUpServices();
@@ -19,14 +17,18 @@ class StartUpViewModel extends BaseModel {
       if (status) {
         SharedPreferences prefs = await SharedPreferences.getInstance();
         introScreen = prefs.getBool("introScreen") ?? false;
-        // isdeeplink = prefs.getBool("isdeeplink") ?? false;
-        commonScreen = prefs.getBool("commonDataPage") ?? false;
-        registerPage = prefs.getBool("registerPage") ?? false;
+        pageType = prefs.getString('pageType') ?? "";
+        selectionPage = prefs.getBool("selectionPage") ?? false;
 
         if (introScreen) {
-          _navigationService.navigateTo('/home');
+          if (selectionPage) {
+            _navigationService.navigateWithReplace("/navSelect",
+                arguments: {'pageType': pageType});
+          } else {
+            _navigationService.navigateWithReplace('/selectionPage');
+          }
         } else {
-          _navigationService.navigateTo('/intro-screen');
+          _navigationService.navigateWithReplace('/intro-screen');
         }
       }
     });
@@ -36,10 +38,4 @@ class StartUpViewModel extends BaseModel {
     await Future.delayed(Duration(milliseconds: 3000), () {});
     return true;
   }
-
-  // Future handleStartUpServices() async {
-  //   await _dynamicLinkService.handleDynamicLinks();
-  //   // await _pushNotificationService.init();
-  //   await _deviceInfoService.deviceInfo();
-  // }
 }
