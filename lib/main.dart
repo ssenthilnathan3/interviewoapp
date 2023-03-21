@@ -26,7 +26,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return ConnectivityAppWrapper(
       app: MaterialApp(
-        title: 'Flutter Demo',
+        title: 'InterviewO',
         onGenerateRoute: Routers.generateRoute,
         navigatorKey: locator<NavigationService>().navigationKey,
         initialRoute: '/',

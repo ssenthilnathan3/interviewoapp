@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:interviewo/widgets/CardWidget.dart';
 import 'package:interviewo/model/placemodel.dart';
 import 'package:interviewo/data/data.dart';
@@ -34,120 +36,274 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        // automaticallyImplyLeading: false,
-        iconTheme: IconThemeData(color: Colors.white),
-        backgroundColor: IOTheme().IOBlue,
+        body: CustomScrollView(slivers: [
+      SliverPersistentHeader(
+        pinned: true,
+        floating: false,
+        delegate: SearchHeader(
+          icon: Icons.shopping_cart_rounded,
+          icon1: Icons.notifications_active_outlined,
+          title: 'InterviewO',
+          search: _Search(),
+        ),
       ),
-      body: SingleChildScrollView(
-        child: Container(
-          color: Colors.white10,
-          padding: EdgeInsets.symmetric(vertical: 10, horizontal: 24),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Container(
-                padding: EdgeInsets.symmetric(horizontal: 24),
-                height: 50,
-                decoration: BoxDecoration(
-                    color: Color(0xffEFEFEF),
-                    borderRadius: BorderRadius.circular(14)),
-                child: Row(
-                  children: <Widget>[
-                    Icon(Icons.search),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Text(
-                      "Search",
-                      style: TextStyle(color: Colors.grey, fontSize: 19),
-                    )
-                  ],
+      SliverFillRemaining(
+        hasScrollBody: true,
+        child: SingleChildScrollView(
+          child: Container(
+            color: Colors.white10,
+            padding: EdgeInsets.symmetric(vertical: 10, horizontal: 24),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text(
+                  "Categories",
+                  style: TextStyle(
+                      color: Colors.black87.withOpacity(0.8),
+                      fontSize: 25,
+                      fontWeight: FontWeight.w600),
                 ),
-              ),
-              SizedBox(
-                height: 30,
-              ),
-              Text(
-                "Categories",
-                style: TextStyle(
-                    color: Colors.black87.withOpacity(0.8),
-                    fontSize: 25,
-                    fontWeight: FontWeight.w600),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              Container(
-                height: 30,
-                child: ListView.builder(
-                    itemCount: categories.length,
-                    shrinkWrap: true,
-                    physics: ClampingScrollPhysics(),
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (context, index) {
-                      return CategorieTile(
-                        categorie: categories[index],
-                        isSelected: selectedCategorie == categories[index],
-                        context: this,
-                      );
-                    }),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              Container(
-                height: 250,
-                child: ListView.builder(
-                    itemCount: specialities.length,
-                    shrinkWrap: true,
-                    physics: ClampingScrollPhysics(),
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (context, index) {
-                      return SpecialistTile(
-                        imgAssetPath: specialities[index].imgAssetPath,
-                        speciality: specialities[index].speciality,
-                        noOfDoctors: specialities[index].noOfDoctors,
-                        backColor: specialities[index].backgroundColor,
-                      );
-                    }),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              Text(
-                "Doctors",
-                style: TextStyle(
-                    color: Colors.black87.withOpacity(0.8),
-                    fontSize: 25,
-                    fontWeight: FontWeight.w600),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              Container(
-                height: 200,
-                child: ListView.builder(
-                    itemCount: places.length,
-                    shrinkWrap: true,
-                    physics: ClampingScrollPhysics(),
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (context, index) {
-                      return FeaturedCard(
-                        placeModel: places[index],
-                      );
-                    }),
-              ),
-              SizedBox(height: 100)
-            ],
+                SizedBox(
+                  height: 20,
+                ),
+                Container(
+                  height: 30,
+                  child: ListView.builder(
+                      itemCount: categories.length,
+                      shrinkWrap: true,
+                      physics: ClampingScrollPhysics(),
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (context, index) {
+                        return CategorieTile(
+                          categorie: categories[index],
+                          isSelected: selectedCategorie == categories[index],
+                          context: this,
+                        );
+                      }),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Container(
+                  height: 250,
+                  child: ListView.builder(
+                      itemCount: specialities.length,
+                      shrinkWrap: true,
+                      physics: ClampingScrollPhysics(),
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (context, index) {
+                        return SpecialistTile(
+                          imgAssetPath: specialities[index].imgAssetPath,
+                          speciality: specialities[index].speciality,
+                          noOfDoctors: specialities[index].noOfDoctors,
+                          backColor: specialities[index].backgroundColor,
+                        );
+                      }),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Text(
+                  "Doctors",
+                  style: TextStyle(
+                      color: Colors.black87.withOpacity(0.8),
+                      fontSize: 25,
+                      fontWeight: FontWeight.w600),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Container(
+                  height: 200,
+                  child: ListView.builder(
+                      itemCount: places.length,
+                      shrinkWrap: true,
+                      physics: ClampingScrollPhysics(),
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (context, index) {
+                        return FeaturedCard(
+                          placeModel: places[index],
+                        );
+                      }),
+                ),
+                SizedBox(height: 100)
+              ],
+            ),
           ),
         ),
+      )
+    ]));
+  }
+}
+
+class _Search extends StatefulWidget {
+  _Search({Key? key}) : super(key: key);
+
+  @override
+  __SearchState createState() => __SearchState();
+}
+
+class __SearchState extends State<_Search> {
+  late TextEditingController _editingController;
+
+  @override
+  void initState() {
+    super.initState();
+    _editingController = TextEditingController();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(left: 20, right: 5),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Flexible(
+            child: TextField(
+              cursorColor: textColor,
+              controller: _editingController,
+              onChanged: (_) => setState(() {}),
+              decoration: InputDecoration(
+                hintText: 'Search Courses...',
+                hintStyle: TextStyle(color: textColor.withOpacity(0.5)),
+                enabledBorder: InputBorder.none,
+                focusedBorder: InputBorder.none,
+              ),
+            ),
+          ),
+          _editingController.text.trim().isEmpty
+              ? IconButton(
+                  icon: Icon(Icons.search, color: textColor.withOpacity(0.5)),
+                  onPressed: null)
+              : IconButton(
+                  highlightColor: Colors.transparent,
+                  splashColor: Colors.transparent,
+                  icon: Icon(Icons.clear, color: textColor.withOpacity(0.5)),
+                  onPressed: () => setState(
+                    () {
+                      _editingController.clear();
+                    },
+                  ),
+                ),
+        ],
       ),
     );
   }
+}
+
+class SearchHeader extends SliverPersistentHeaderDelegate {
+  final double minTopBarHeight = 100;
+  final double maxTopBarHeight = 150;
+  final String title;
+  final IconData icon;
+  final IconData icon1;
+  final Widget search;
+
+  SearchHeader({
+    required this.title,
+    required this.icon,
+    required this.icon1,
+    required this.search,
+  });
+
+  @override
+  Widget build(
+    BuildContext context,
+    double shrinkOffset,
+    bool overlapsContent,
+  ) {
+    var shrinkFactor = min(1, shrinkOffset / (maxExtent - minExtent));
+
+    var topBar = Positioned(
+      top: 0,
+      left: 0,
+      right: 0,
+      child: Container(
+        alignment: Alignment.center,
+        height:
+            max(maxTopBarHeight * (1 - shrinkFactor * 1.45), minTopBarHeight),
+        width: 50,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Icon(
+              icon1,
+              size: 30,
+              color: Colors.white,
+            ),
+            const SizedBox(
+              width: 20,
+            ),
+            Text(title,
+                style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                    color: Colors.white, fontWeight: FontWeight.bold)),
+            const SizedBox(
+              width: 20,
+            ),
+            Icon(
+              icon,
+              size: 30,
+              color: Colors.white,
+            )
+          ],
+        ),
+        decoration: const BoxDecoration(
+            color: mainColor,
+            borderRadius: BorderRadius.only(
+              bottomLeft: Radius.circular(36),
+              bottomRight: Radius.circular(36),
+            )),
+      ),
+    );
+    return Container(
+      height: max(maxExtent - shrinkOffset, minExtent),
+      child: Stack(
+        fit: StackFit.loose,
+        children: [
+          if (shrinkFactor <= 0.5) topBar,
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Padding(
+              padding: const EdgeInsets.only(
+                bottom: 10,
+              ),
+              child: Container(
+                alignment: Alignment.center,
+                child: search,
+                width: 350,
+                height: 50,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    color: Colors.white,
+                    boxShadow: [
+                      BoxShadow(
+                        offset: Offset(0, 5),
+                        blurRadius: 10,
+                        color: mainColor,
+                      )
+                    ]),
+              ),
+            ),
+          ),
+          if (shrinkFactor > 0.5) topBar,
+        ],
+      ),
+    );
+  }
+
+  @override
+  double get maxExtent => 180;
+
+  @override
+  double get minExtent => 100;
+
+  @override
+  bool shouldRebuild(SliverPersistentHeaderDelegate oldDelegate) => true;
 }
 
 class CategorieTile extends StatefulWidget {

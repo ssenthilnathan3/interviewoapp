@@ -14,6 +14,7 @@ class IntroScreen extends StatefulWidget {
 class _IntroScreenState extends State<IntroScreen> {
   final NavigationService _navigationService = locator<NavigationService>();
   final introKey = GlobalKey<_IntroScreenState>();
+  
 
   void _onIntroEnd(context) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -39,7 +40,7 @@ class _IntroScreenState extends State<IntroScreen> {
                 fontWeight: FontWeight.bold,
                 fontSize: 15)),
         onPressed: () {
-          _navigationService.navigateTo("/home");
+          _navigationService.navigateTo("/selectionPage");
         },
       ),
       pageBackgroundColor: IOTheme().IOGreen,

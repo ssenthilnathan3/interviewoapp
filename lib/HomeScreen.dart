@@ -50,58 +50,56 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Scaffold(
-        // backgroundColor: Colors.transparent,
-        drawer: ZoomDrawer(
-          controller: _ZoomDrawerController,
-          menuScreen: MenuScreen(
-            mainMenu,
-            callback: _updatePage,
-            current: 0,
-          ),
-          mainScreen: widget.w!,
-          borderRadius: 24.0,
-          showShadow: false,
-          angle: 0.0,
-          drawerShadowsBackgroundColor: Colors.grey[300]!,
-          slideWidth: MediaQuery.of(context).size.width * 0.65,
+    return Scaffold(
+      // backgroundColor: Colors.transparent,
+      drawer: ZoomDrawer(
+        controller: _ZoomDrawerController,
+        menuScreen: MenuScreen(
+          mainMenu,
+          callback: _updatePage,
+          current: 0,
         ),
-        body: FutureBuilder<bool>(
-          future: getData(),
-          builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
-            if (!snapshot.hasData) {
-              return const SizedBox();
-            } else {
-              return ConnectivityWidgetWrapper(
-                disableInteraction: true,
-                offlineWidget: OfflineWidget(),
-                child: Stack(children: <Widget>[
-                  widget.w!,
-                  Positioned(
-                      bottom: 0,
-                      height: 70,
-                      child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(20)),
-                            color: Colors.white,
-                          ),
-                          width: MediaQuery.of(context).size.width)),
-                  Positioned(
+        mainScreen: widget.w!,
+        borderRadius: 24.0,
+        showShadow: false,
+        angle: 0.0,
+        drawerShadowsBackgroundColor: Colors.grey[300]!,
+        slideWidth: MediaQuery.of(context).size.width * 0.65,
+      ),
+      body: FutureBuilder<bool>(
+        future: getData(),
+        builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
+          if (!snapshot.hasData) {
+            return const SizedBox();
+          } else {
+            return ConnectivityWidgetWrapper(
+              disableInteraction: true,
+              offlineWidget: OfflineWidget(),
+              child: Stack(children: <Widget>[
+                widget.w!,
+                Positioned(
                     bottom: 0,
-                    height: 100,
-                    width: MediaQuery.of(context).size.width,
-                    child: BottomBar(
-                        bottomBarCallBack: bottomBarCallBack,
-                        positionCallBack: positionCallBack,
-                        position: position,
-                        w: widget.w),
-                  ),
-                ]),
-              );
-            }
-          },
-        ),
+                    height: 70,
+                    child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(20)),
+                          color: Colors.white,
+                        ),
+                        width: MediaQuery.of(context).size.width)),
+                Positioned(
+                  bottom: 0,
+                  height: 90,
+                  width: MediaQuery.of(context).size.width,
+                  child: BottomBar(
+                      bottomBarCallBack: bottomBarCallBack,
+                      positionCallBack: positionCallBack,
+                      position: position,
+                      w: widget.w),
+                ),
+              ]),
+            );
+          }
+        },
       ),
     );
   }

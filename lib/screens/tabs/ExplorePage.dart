@@ -4,7 +4,8 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter/widgets.dart';
 import 'package:interviewo/data/Food.dart';
-import 'package:interviewo/screens/DetailPage.dart';
+import 'package:interviewo/model/movie.dart';
+import 'package:interviewo/screens/tabs/detail_pages/CourseDetailPage.dart';
 import 'package:interviewo/services/NavigationService.dart';
 import 'package:interviewo/utils/Locator.dart';
 
@@ -113,8 +114,8 @@ class _ExplorePageState extends State<ExplorePage> {
                     .map((item) => GestureDetector(
                         onTap: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => FoodDetailView(
-                                  food: foodList[_listItem.indexOf(item)])));
+                              builder: (context) => DetailScreen(
+                                  movie: movies[_listItem.indexOf(item)])));
                         },
                         child: Card(
                           color: Colors.transparent,

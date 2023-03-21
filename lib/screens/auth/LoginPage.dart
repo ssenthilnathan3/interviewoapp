@@ -18,9 +18,22 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _password = TextEditingController();
   bool _passwordVisible = false;
   final _formKey = GlobalKey<FormState>();
+  String? pageType;
   _saveLogin() async {
     SharedPreferences _prefs = await SharedPreferences.getInstance();
     _prefs.setBool("isLoggedIn", true);
+  }
+
+  _getPageType() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      pageType = prefs.getString('pageType');
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
   }
 
   @override
@@ -152,7 +165,8 @@ class _LoginScreenState extends State<LoginScreen> {
                           onPressed: () {
                             _formKey.currentState!.save();
                             if (_formKey.currentState!.validate()) {
-                              _navigationService.navigateTo("/home");
+                              _navigationService.navigateTo("/navSelect",
+                                  arguments: {'pageType': pageType});
                             }
                           },
                           child: Text("LOGIN",

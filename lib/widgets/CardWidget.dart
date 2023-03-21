@@ -1,8 +1,9 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:interviewo/model/movie.dart';
 import 'package:interviewo/model/placemodel.dart';
-import 'package:interviewo/screens/DetailPage.dart';
+import 'package:interviewo/screens/tabs/detail_pages/CourseDetailPage.dart';
 import 'package:interviewo/services/NavigationService.dart';
 import 'package:interviewo/utils/Locator.dart';
 
@@ -132,4 +133,169 @@ Widget Rating({required double rating, Color color = Colors.white10}) {
       ],
     ),
   );
+}
+
+class GenreCard extends StatelessWidget {
+  final String genre;
+
+  const GenreCard({Key? key, required this.genre}) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      alignment: Alignment.center,
+      margin: EdgeInsets.only(left: 20),
+      padding: EdgeInsets.symmetric(
+        horizontal: 20,
+        vertical: 20 / 4, // 5 padding top and bottom
+      ),
+      decoration: BoxDecoration(
+        border: Border.all(color: Colors.black26),
+        borderRadius: BorderRadius.circular(20),
+      ),
+      child: Text(
+        genre,
+        style:
+            TextStyle(color: Color(0xFF12153D).withOpacity(0.8), fontSize: 16),
+      ),
+    );
+  }
+}
+
+class SkillCard extends StatelessWidget {
+  final store;
+  final double width;
+  final index;
+
+  const SkillCard({
+    Key? key,
+    required this.store,
+    required this.index,
+    this.width = 250,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: width,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: GestureDetector(
+        onTap: () => Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => DetailScreen(movie: movies[index]),
+          ),
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+                width: width,
+                height: 120,
+                child: ClipRRect(
+                  borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(12),
+                      topRight: Radius.circular(12)),
+                  child: Image.asset(
+                    store[index].backdrop,
+                    fit: BoxFit.cover,
+                  ),
+                )),
+            ClipRRect(
+              borderRadius: const BorderRadius.only(
+                  bottomLeft: Radius.circular(12),
+                  bottomRight: Radius.circular(12)),
+              child: Container(
+                color: Colors.white,
+                padding: const EdgeInsets.only(
+                  left: 10,
+                  right: 10,
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          store[index].title,
+                          overflow: TextOverflow.ellipsis,
+                          style: const TextStyle(
+                              fontSize: 20,
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            const IconButton(
+                                icon: Icon(
+                                  Icons.watch_later_outlined,
+                                  color: Colors.amber,
+                                ),
+                                onPressed: null),
+                            Text(
+                              store[index].year.toString(),
+                              style: const TextStyle(
+                                  color: Colors.amber,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
+                    Text(
+                      store[index].numOfRatings.toString(),
+                      overflow: TextOverflow.ellipsis,
+                      style: const TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                    Row(
+                      children: [
+                        const Icon(
+                          Icons.date_range,
+                          size: 18,
+                          color: Color(0xFF14213d),
+                        ),
+                        Text(
+                          store[index].year.toString(),
+                          style: const TextStyle(
+                            color: Colors.black,
+                            fontSize: 12,
+                          ),
+                        ),
+                        Spacer(),
+                        ElevatedButton(
+                            onPressed: () {},
+                            style: ElevatedButton.styleFrom(
+                              minimumSize: const Size(80, 30),
+                              side: const BorderSide(
+                                  width: 1, color: Color(0xFFe5e5e5)),
+                              shape: RoundedRectangleBorder(
+                                borderRadius:
+                                    BorderRadius.circular(15), // <-- Radius
+                              ),
+                            ),
+                            child: Text(
+                              store[index].year.toString(),
+                              style: const TextStyle(
+                                color: Colors.black,
+                              ),
+                            )),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
 }

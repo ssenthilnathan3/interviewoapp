@@ -47,7 +47,7 @@ class _BottomBarState extends State<BottomBar> {
       currentTab = [
         ExplorePage(),
         widget.w,
-        VideoInfo(),
+        DiscoverPage(),
       ];
     });
 

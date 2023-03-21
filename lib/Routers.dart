@@ -1,5 +1,5 @@
 import 'package:interviewo/HomeScreen.dart';
-import 'package:interviewo/screens/DetailPage.dart';
+import 'package:interviewo/screens/tabs/detail_pages/CourseDetailPage.dart';
 
 import 'package:flutter/material.dart';
 import 'package:interviewo/screens/IntroScreen.dart';
@@ -12,6 +12,7 @@ import 'package:interviewo/screens/modules/ForUniversities.dart';
 import 'package:interviewo/screens/modules/SelectionPage.dart';
 
 import 'package:interviewo/screens/tabs/HomePage.dart';
+import 'package:interviewo/screens/tabs/detail_pages/InstructorDetailPage.dart';
 
 class Routers {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -29,9 +30,9 @@ class Routers {
       case '/googleAuth':
         return MaterialPageRoute(builder: (_) => GoogleSignInPage());
       case '/home':
-        return MaterialPageRoute(builder: (_) => HomePage());
+        return MaterialPageRoute(builder: (_) => HomeScreen(w: HomePage()));
 
-      // ********** Home Page Routes***************************//
+      // ********** Home Page Routes ***************************//
 
       case '/navSelect':
         final Map arg = settings.arguments as Map;
@@ -50,6 +51,10 @@ class Routers {
         } else {
           return MaterialPageRoute(builder: (_) => HomeScreen(w: HomePage()));
         }
+
+      // ********** Detail Page Routes ***************************//
+      case '/instructor-detail':
+        return MaterialPageRoute(builder: (_) => InstructorsPage());
 
       // ********** Default Route ***************************//
       default:
