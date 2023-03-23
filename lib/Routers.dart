@@ -17,7 +17,7 @@ import 'package:interviewo/screens/tabs/detail_pages/InstructorDetailPage.dart';
 class Routers {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
-      // ********** Intro,Home,Commonpage,personal profile ***************************//
+     
       case '/login':
         return MaterialPageRoute(builder: (_) => LoginScreen());
       case '/register':
