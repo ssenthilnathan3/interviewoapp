@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "559140758590",
-    "project_id": "interviewo-8f76b",
-    "storage_bucket": "interviewo-8f76b.appspot.com"
+    "project_number": "301871851613",
+    "project_id": "interviewoapp-815c3",
+    "storage_bucket": "interviewoapp-815c3.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:559140758590:android:dd5de0f1872adb303ddd6f",
+        "mobilesdk_app_id": "1:301871851613:android:9919436620882f792e85b4",
         "android_client_info": {
-          "package_name": "com.example.interviewo"
+          "package_name": "app.interviewo.io"
         }
       },
       "oauth_client": [
         {
-          "client_id": "559140758590-7rpj2cas6oolgrehargoq4llhveq07c6.apps.googleusercontent.com",
+          "client_id": "301871851613-rb2tj96vla8112f47qmq3ueffsrs8f5c.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAPhSmOVa-A9syzIyHpJ6L6191phQ3iC3M"
+          "current_key": "AIzaSyBLVk-0Bx90tgLlTswG1v5bsKAq1qifgNw"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "559140758590-7rpj2cas6oolgrehargoq4llhveq07c6.apps.googleusercontent.com",
+              "client_id": "301871851613-rb2tj96vla8112f47qmq3ueffsrs8f5c.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
