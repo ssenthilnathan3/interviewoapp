@@ -15,6 +15,7 @@ class SelectionPage extends StatefulWidget {
 }
 
 class _SelectionPageState extends State<SelectionPage> {
+  bool isLoggedIn = false, isRegistered = false;
   List pageList = [
     {"image": "assets/images/1.png", "page": "student"},
     {
@@ -38,6 +39,21 @@ class _SelectionPageState extends State<SelectionPage> {
 
     await prefs.setBool('selectionPage', true);
     await prefs.setString('pageType', pageList[selectedIndex]['page']);
+  }
+
+  void _getInfo() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    setState(() {
+      isLoggedIn = prefs.getBool('isLoggedIn')!;
+      isRegistered = prefs.getBool('isRegistered')!;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _getInfo();
   }
 
   @override
@@ -81,9 +97,12 @@ class _SelectionPageState extends State<SelectionPage> {
                       });
                       _onSelected(context);
                       Timer(Duration(seconds: 5), () {
-                        _navigationService.navigateTo("/navSelect", arguments: {
-                          'pageType': pageList[selectedIndex]['page']
-                        });
+                        (isLoggedIn || isRegistered)
+                            ? _navigationService.navigateTo("/navSelect",
+                                arguments: {
+                                    'pageType': pageList[selectedIndex]['page']
+                                  })
+                            : _navigationService.navigateTo("/login");
                       });
                     },
                     child: Container(

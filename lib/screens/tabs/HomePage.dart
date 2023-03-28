@@ -41,8 +41,7 @@ class _HomePageState extends State<HomePage> {
         pinned: true,
         floating: false,
         delegate: SearchHeader(
-          icon: Icons.shopping_cart_rounded,
-          icon1: Icons.notifications_active_outlined,
+          icon: Icons.person_2_outlined,
           title: 'InterviewO',
           search: _Search(),
         ),
@@ -201,15 +200,16 @@ class SearchHeader extends SliverPersistentHeaderDelegate {
   final double maxTopBarHeight = 150;
   final String title;
   final IconData icon;
-  final IconData icon1;
+
   final Widget search;
 
   SearchHeader({
     required this.title,
     required this.icon,
-    required this.icon1,
     required this.search,
   });
+
+  final NavigationService _navigationService = locator<NavigationService>();
 
   @override
   Widget build(
@@ -231,25 +231,21 @@ class SearchHeader extends SliverPersistentHeaderDelegate {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            Icon(
-              icon1,
-              size: 30,
-              color: Colors.white,
-            ),
-            const SizedBox(
-              width: 20,
-            ),
             Text(title,
                 style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                     color: Colors.white, fontWeight: FontWeight.bold)),
             const SizedBox(
               width: 20,
             ),
-            Icon(
-              icon,
-              size: 30,
-              color: Colors.white,
-            )
+            IconButton(
+                icon: Icon(
+                  icon,
+                  size: 30,
+                  color: Colors.white,
+                ),
+                onPressed: () {
+                  _navigationService.navigateTo("/profile");
+                }),
           ],
         ),
         decoration: const BoxDecoration(

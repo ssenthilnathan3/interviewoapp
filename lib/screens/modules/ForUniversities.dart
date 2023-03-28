@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class ForUniversitiesPage extends StatefulWidget {
@@ -14,3 +13,4 @@ class _ForUniversitiesPageState extends State<ForUniversitiesPage> {
     return Scaffold();
   }
 }
+                                       

@@ -8,6 +8,7 @@ import 'package:interviewo/model/movie.dart';
 import 'package:interviewo/screens/tabs/detail_pages/CourseDetailPage.dart';
 import 'package:interviewo/services/NavigationService.dart';
 import 'package:interviewo/utils/Locator.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ExplorePage extends StatefulWidget {
   const ExplorePage({Key? key}) : super(key: key);
@@ -30,6 +31,7 @@ class _ExplorePageState extends State<ExplorePage> {
     'assets/images/five.jpg',
   ];
   var foodList = [];
+  List<String> favListItem = [];
   void getFoods() async {
     foodList = await bringTheFoods();
   }
@@ -38,6 +40,20 @@ class _ExplorePageState extends State<ExplorePage> {
   void initState() {
     super.initState();
     getFoods();
+    // _getWishList();
+  }
+
+  _saveWishList() async {
+    final SharedPreferences _prefs = await SharedPreferences.getInstance();
+
+    _prefs.setStringList('wishList', favListItem);
+  }
+
+  _getWishList() async {
+    final SharedPreferences _prefs = await SharedPreferences.getInstance();
+    setState(() {
+      favListItem = _prefs.getStringList('wishList')!;
+    });
   }
 
   @override
@@ -134,10 +150,34 @@ class _ExplorePageState extends State<ExplorePage> {
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(10),
                                     color: Colors.white),
-                                child: Icon(
-                                  Icons.bookmark_border,
-                                  size: 15,
-                                ),
+                                child: IconButton(
+                                    onPressed: () {
+                                      (favListItem.contains(_listItem
+                                              .indexOf(item)
+                                              .toString()))
+                                          ? favListItem.add(_listItem
+                                              .indexOf(item)
+                                              .toString())
+                                          : favListItem.remove(_listItem
+                                              .indexOf(item)
+                                              .toString());
+                                      favListItem.contains(_listItem
+                                              .indexOf(item)
+                                              .toString())
+                                          ? print("added")
+                                          : print("illa da venna");
+                                      _saveWishList();
+                                    },
+                                    icon: favListItem.contains(
+                                            _listItem.indexOf(item).toString())
+                                        ? Icon(
+                                            Icons.bookmark_added,
+                                            size: 15,
+                                          )
+                                        : Icon(
+                                            Icons.bookmark_border,
+                                            size: 15,
+                                          )),
                               ),
                             ),
                           ),

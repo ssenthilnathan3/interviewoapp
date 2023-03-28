@@ -1,4 +1,5 @@
 import 'package:interviewo/HomeScreen.dart';
+import 'package:interviewo/screens/auth/user_profiles/Profile.dart';
 import 'package:interviewo/screens/tabs/detail_pages/CourseDetailPage.dart';
 
 import 'package:flutter/material.dart';
@@ -17,12 +18,13 @@ import 'package:interviewo/screens/tabs/detail_pages/InstructorDetailPage.dart';
 class Routers {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
-     
       case '/login':
         return MaterialPageRoute(builder: (_) => LoginScreen());
       case '/register':
         return MaterialPageRoute(builder: (_) => RegisterScreen());
 
+      case '/profile':
+        return MaterialPageRoute(builder: (_) => ProfileScreen());
       case '/intro-screen':
         return MaterialPageRoute(builder: (_) => IntroScreen());
       case '/selectionPage':

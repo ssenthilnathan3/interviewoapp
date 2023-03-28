@@ -37,7 +37,7 @@ dependencies:
   appinio_video_player: ^1.2.0
   get: 
   flutter_zoom_drawer: ^3.0.4+1
-  
+  line_awesome_flutter: ^2.0.0
 
   # firebase plugins
   firebase_core:

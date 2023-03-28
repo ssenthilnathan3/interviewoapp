@@ -44,7 +44,7 @@ class _GoogleSignInPageState extends State<GoogleSignInPage> {
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Image.asset('assets/images/defaultloader.png'),
+              child: Image.asset('assets/images/splashscreen.png'),
             ),
             ElevatedButton(
               onPressed: () async {
