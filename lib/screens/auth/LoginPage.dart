@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 import 'package:interviewo/services/NavigationService.dart';
@@ -18,6 +17,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _password = TextEditingController();
   bool _passwordVisible = false;
   final _formKey = GlobalKey<FormState>();
+
   String? pageType;
   _saveLogin() async {
     SharedPreferences _prefs = await SharedPreferences.getInstance();
@@ -60,7 +60,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         style: TextStyle(
                             fontSize: 50,
                             fontWeight: FontWeight.bold,
-                            color: IOTheme().IOBlue)),
+                            color: IOTheme.IOBlue)),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 20.0),
@@ -68,7 +68,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         style: TextStyle(
                             fontSize: 15,
                             fontWeight: FontWeight.bold,
-                            color: IOTheme().IOBlue)),
+                            color: IOTheme.IOBlue)),
                   ),
                 ],
               ),
@@ -84,16 +84,15 @@ class _LoginScreenState extends State<LoginScreen> {
                         cursorColor: Colors.white,
                         decoration: InputDecoration(
                           enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: IOTheme().IOGreen)),
+                              borderSide: BorderSide(color: IOTheme.IOGreen)),
                           prefixIcon: Icon(Icons.email_outlined),
                           labelText: "Enter your Email",
-                          floatingLabelStyle:
-                              TextStyle(color: IOTheme().IOGreen),
-                          prefixIconColor: IOTheme().IOGreen,
+                          floatingLabelStyle: TextStyle(color: IOTheme.IOGreen),
+                          prefixIconColor: IOTheme.IOGreen,
                           border: OutlineInputBorder(
-                              borderSide: BorderSide(color: IOTheme().IOGreen)),
+                              borderSide: BorderSide(color: IOTheme.IOGreen)),
                           focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: IOTheme().IOGreen)),
+                              borderSide: BorderSide(color: IOTheme.IOGreen)),
                         ),
                         validator: (value) {
                           if (value == null || value.isEmpty) {
@@ -114,7 +113,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               _passwordVisible
                                   ? Icons.visibility
                                   : Icons.visibility_off,
-                              color: IOTheme().IOGreen,
+                              color: IOTheme.IOGreen,
                             ),
                             onPressed: () {
                               // Update the state i.e. toogle the state of passwordVisible variable
@@ -124,16 +123,15 @@ class _LoginScreenState extends State<LoginScreen> {
                             },
                           ),
                           enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: IOTheme().IOGreen)),
+                              borderSide: BorderSide(color: IOTheme.IOGreen)),
                           prefixIcon: Icon(Icons.password_outlined),
                           labelText: "Enter your Password",
-                          floatingLabelStyle:
-                              TextStyle(color: IOTheme().IOGreen),
-                          prefixIconColor: IOTheme().IOBlue,
+                          floatingLabelStyle: TextStyle(color: IOTheme.IOGreen),
+                          prefixIconColor: IOTheme.IOBlue,
                           border: OutlineInputBorder(
-                              borderSide: BorderSide(color: IOTheme().IOGreen)),
+                              borderSide: BorderSide(color: IOTheme.IOGreen)),
                           focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: IOTheme().IOGreen)),
+                              borderSide: BorderSide(color: IOTheme.IOGreen)),
                         ),
                         validator: (value) {
                           if (value == null || value.isEmpty) {
@@ -149,7 +147,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             onPressed: () {},
                             child: Text("Forgot Password?",
                                 style: TextStyle(
-                                    color: IOTheme().IOBlue,
+                                    color: IOTheme.IOBlue,
                                     fontWeight: FontWeight.bold))),
                       ),
                       SizedBox(
@@ -160,8 +158,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   MediaQuery.of(context).size.width * 0.2, 50),
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(20)),
-                              backgroundColor:
-                                  IOTheme().IOBlue.withOpacity(0.5)),
+                              backgroundColor: IOTheme.IOBlue.withOpacity(0.5)),
                           onPressed: () {
                             _formKey.currentState!.save();
                             if (_formKey.currentState!.validate()) {
@@ -182,8 +179,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 children: [
                   Text("OR",
                       style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: IOTheme().IOBlue)),
+                          fontWeight: FontWeight.bold, color: IOTheme.IOBlue)),
                   const SizedBox(height: 10),
                   SizedBox(
                     width: double.infinity,
@@ -198,7 +194,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         style: OutlinedButton.styleFrom(
                             fixedSize: Size(
                                 MediaQuery.of(context).size.width * 0.2, 50),
-                            backgroundColor: IOTheme().IOBlue.withOpacity(0.5),
+                            backgroundColor: IOTheme.IOBlue.withOpacity(0.5),
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(20))),
                         label: const Text("Signin With Google",
@@ -217,11 +213,11 @@ class _LoginScreenState extends State<LoginScreen> {
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 20,
-                              color: IOTheme().IOBlue),
+                              color: IOTheme.IOBlue),
                           children: [
                             TextSpan(
                                 text: " \tSignup",
-                                style: TextStyle(color: IOTheme().IOBlue))
+                                style: TextStyle(color: IOTheme.IOBlue))
                           ]),
                     ),
                   ),

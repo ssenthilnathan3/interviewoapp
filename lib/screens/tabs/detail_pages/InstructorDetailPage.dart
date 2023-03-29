@@ -127,7 +127,7 @@ class InstructorsPage extends StatelessWidget {
                   ElevatedButton(
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all<Color>(
-                        IOTheme().IOGreen,
+                        IOTheme.IOGreen,
                       ),
                     ),
                     child: const Text('Courses Provided by Instructor'),

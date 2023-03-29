@@ -14,7 +14,6 @@ class IntroScreen extends StatefulWidget {
 class _IntroScreenState extends State<IntroScreen> {
   final NavigationService _navigationService = locator<NavigationService>();
   final introKey = GlobalKey<_IntroScreenState>();
-  
 
   void _onIntroEnd(context) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -31,19 +30,19 @@ class _IntroScreenState extends State<IntroScreen> {
   @override
   Widget build(BuildContext context) {
     return OnBoardingSlider(
-      headerBackgroundColor: IOTheme().IOGreen,
-      finishButtonColor: IOTheme().IOBlue,
+      headerBackgroundColor: IOTheme.IOGreen,
+      finishButtonColor: IOTheme.IOBlue,
       leading: TextButton(
         child: Text("Skip",
             style: TextStyle(
-                color: IOTheme().IOBlue,
+                color: IOTheme.IOBlue,
                 fontWeight: FontWeight.bold,
                 fontSize: 15)),
         onPressed: () {
           _navigationService.navigateTo("/selectionPage");
         },
       ),
-      pageBackgroundColor: IOTheme().IOGreen,
+      pageBackgroundColor: IOTheme.IOGreen,
       finishButtonText: 'Register',
       onFinish: () {
         _navigationService.navigateTo("/login");

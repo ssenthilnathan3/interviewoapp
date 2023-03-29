@@ -3,23 +3,27 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:interviewo/utils/constants.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
+import 'package:interviewo/services/NavigationService.dart';
+import 'package:interviewo/utils/Locator.dart';
 
-class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({Key? key}) : super(key: key);
+class SettingsScreen extends StatelessWidget {
+  SettingsScreen({Key? key}) : super(key: key);
+
+  final NavigationService _navigationService = locator<NavigationService>();
 
   @override
   Widget build(BuildContext context) {
     var isDark = MediaQuery.of(context).platformBrightness == Brightness.dark;
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: IOTheme().IOGreen,
+        backgroundColor: IOTheme.IOGreen,
         leading: IconButton(
             onPressed: () => Navigator.of(context).pop(),
             icon: const Icon(LineAwesomeIcons.angle_left)),
         title: Text("Profile",
             style: TextStyle(
                 fontSize: 25,
-                color: IOTheme().IOBlue,
+                color: IOTheme.IOBlue,
                 fontWeight: FontWeight.bold)),
         actions: [
           IconButton(onPressed: () {}, icon: Icon(CupertinoIcons.home))
@@ -50,12 +54,16 @@ class ProfileScreen extends StatelessWidget {
                       height: 35,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(100),
-                          color: IOTheme().IOBlue),
-                      child: const Icon(
-                        LineAwesomeIcons.alternate_pencil,
-                        color: Colors.white,
-                        size: 20,
-                      ),
+                          color: IOTheme.IOBlue),
+                      child: IconButton(
+                          icon: Icon(
+                            LineAwesomeIcons.alternate_pencil,
+                            color: Colors.white,
+                            size: 20,
+                          ),
+                          onPressed: () {
+                            _navigationService.navigateTo('/profileEdit');
+                          }),
                     ),
                   ),
                 ],
@@ -85,18 +93,17 @@ class ProfileScreen extends StatelessWidget {
               const SizedBox(height: 10),
 
               /// -- MENU
-              ProfileMenuWidget(
-                  title: "Settings",
-                  icon: LineAwesomeIcons.cog,
-                  onPress: () {}),
+
               ProfileMenuWidget(
                   title: "Billing Details",
                   icon: LineAwesomeIcons.wallet,
                   onPress: () {}),
               ProfileMenuWidget(
-                  title: "User Management",
+                  title: "Profile Info",
                   icon: LineAwesomeIcons.user_check,
-                  onPress: () {}),
+                  onPress: () {
+                    _navigationService.navigateTo('/profileEdit');
+                  }),
               const Divider(),
               const SizedBox(height: 10),
               ProfileMenuWidget(
@@ -109,25 +116,7 @@ class ProfileScreen extends StatelessWidget {
                   textColor: Colors.red,
                   endIcon: false,
                   onPress: () {
-                    Get.defaultDialog(
-                      title: "LOGOUT",
-                      titleStyle: const TextStyle(fontSize: 20),
-                      content: const Padding(
-                        padding: EdgeInsets.symmetric(vertical: 15.0),
-                        child: Text("Are you sure, you want to Logout?"),
-                      ),
-                      confirm: Expanded(
-                        child: ElevatedButton(
-                          onPressed: () {},
-                          style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.redAccent,
-                              side: BorderSide.none),
-                          child: const Text("Yes"),
-                        ),
-                      ),
-                      cancel: OutlinedButton(
-                          onPressed: () => Get.back(), child: const Text("No")),
-                    );
+                    _navigationService.navigateTo("/login");
                   }),
             ],
           ),
@@ -156,7 +145,7 @@ class ProfileMenuWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var isDark = MediaQuery.of(context).platformBrightness == Brightness.dark;
-    var iconColor = isDark ? IOTheme().IOBlue : IOTheme().IOGreen;
+    var iconColor = isDark ? IOTheme.IOBlue : IOTheme.IOGreen;
 
     return ListTile(
       onTap: onPress,

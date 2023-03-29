@@ -244,7 +244,7 @@ class SearchHeader extends SliverPersistentHeaderDelegate {
                   color: Colors.white,
                 ),
                 onPressed: () {
-                  _navigationService.navigateTo("/profile");
+                  _navigationService.navigateTo("/settings");
                 }),
           ],
         ),

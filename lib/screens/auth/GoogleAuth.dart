@@ -29,22 +29,19 @@ class _GoogleSignInPageState extends State<GoogleSignInPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: IOTheme().IOGreen,
+        appBar: AppBar(
+          backgroundColor: Colors.white,
+          elevation: 0,
+          title: Row(
+            children: [SizedBox(height: 20), Text("Connect with Google")],
+          ),
+        ),
+        backgroundColor: Colors.white,
         body: Center(
           child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-            Align(
-              alignment: Alignment.topCenter,
-              child: Text(
-                'Connect With Google',
-                style: TextStyle(
-                    color: IOTheme().IOBlue,
-                    fontWeight: FontWeight.w300,
-                    fontSize: 27.0),
-              ),
-            ),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Image.asset('assets/images/splashscreen.png'),
+              child: Image.asset('assets/images/googleandinterviewo.png'),
             ),
             ElevatedButton(
               onPressed: () async {
@@ -77,7 +74,7 @@ class _GoogleSignInPageState extends State<GoogleSignInPage> {
                   fixedSize: Size(200, 50),
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10)),
-                  backgroundColor: IOTheme().IOBlue),
+                  backgroundColor: IOTheme.IOBlue),
             )
           ]),
         ));

@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 
 class IOTheme {
-  Color IOBlue = Color(0xff032D43);
-  Color IOGreen = Color(0xff86ED78);
+  static Color IOBlue = Color(0xff032D43);
+  static Color IOGreen = Color(0xff86ED78);
 }
 
 List<String> videos = [

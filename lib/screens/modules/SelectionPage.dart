@@ -72,7 +72,7 @@ class _SelectionPageState extends State<SelectionPage> {
                   'Select Your Role',
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                      color: IOTheme().IOBlue,
+                      color: IOTheme.IOBlue,
                       fontWeight: FontWeight.w300,
                       fontSize: 27.0),
                 ),
@@ -114,7 +114,7 @@ class _SelectionPageState extends State<SelectionPage> {
                           shape: (selectedIndex == index)
                               ? RoundedRectangleBorder(
                                   side: BorderSide(
-                                      color: IOTheme().IOBlue, width: 2),
+                                      color: IOTheme.IOBlue, width: 2),
                                   borderRadius: BorderRadius.circular(15),
                                 )
                               : RoundedRectangleBorder(

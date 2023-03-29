@@ -1,5 +1,6 @@
 import 'package:interviewo/HomeScreen.dart';
-import 'package:interviewo/screens/auth/user_profiles/Profile.dart';
+import 'package:interviewo/screens/ProfileEdit.dart';
+import 'package:interviewo/screens/SettingsPage.dart';
 import 'package:interviewo/screens/tabs/detail_pages/CourseDetailPage.dart';
 
 import 'package:flutter/material.dart';
@@ -22,9 +23,10 @@ class Routers {
         return MaterialPageRoute(builder: (_) => LoginScreen());
       case '/register':
         return MaterialPageRoute(builder: (_) => RegisterScreen());
-
-      case '/profile':
-        return MaterialPageRoute(builder: (_) => ProfileScreen());
+      case '/profileEdit':
+        return MaterialPageRoute(builder: (_) => ProfileEditPage());
+      case '/settings':
+        return MaterialPageRoute(builder: (_) => SettingsScreen());
       case '/intro-screen':
         return MaterialPageRoute(builder: (_) => IntroScreen());
       case '/selectionPage':

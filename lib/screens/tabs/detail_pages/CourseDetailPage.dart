@@ -262,14 +262,14 @@ class TitleDurationAndFabBtn extends StatelessWidget {
             child: ElevatedButton(
               onPressed: () {},
               style: ElevatedButton.styleFrom(
-                backgroundColor: IOTheme().IOGreen,
+                backgroundColor: IOTheme.IOGreen,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20)),
               ),
               child: Icon(
                 Icons.shopping_cart_checkout_outlined,
                 size: 28,
-                color: IOTheme().IOBlue,
+                color: IOTheme.IOBlue,
               ),
             ),
           )
