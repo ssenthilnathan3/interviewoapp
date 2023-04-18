@@ -8,8 +8,8 @@ class StartUpViewModel extends BaseModel {
   final NavigationService _navigationService = locator<NavigationService>();
 
   bool introScreen = false;
-  bool selectionPage = false;
-  String? pageType = "";
+  bool commonPage = false;
+  String pageType = "";
 
   void initialise() {
     // handleStartUpServices();
@@ -17,15 +17,16 @@ class StartUpViewModel extends BaseModel {
       if (status) {
         SharedPreferences prefs = await SharedPreferences.getInstance();
         introScreen = prefs.getBool("introScreen") ?? false;
-        pageType = prefs.getString('pageType') ?? "";
-        selectionPage = prefs.getBool("selectionPage") ?? false;
+        pageType = prefs.getString('pageType') ?? "student";
+        commonPage = prefs.getBool("commonPage") ?? false;
 
         if (introScreen) {
-          if (selectionPage) {
-            _navigationService.navigateWithReplace("/navSelect",
-                arguments: {'pageType': pageType});
+          if (commonPage) {
+            _navigationService.navigateWithReplace('/commonPage');
+            // _navigationService.navigateWithReplace("/navSelect",
+            //     arguments: {'pageType': pageType});
           } else {
-            _navigationService.navigateWithReplace('/selectionPage');
+            _navigationService.navigateWithReplace('/commonPage');
           }
         } else {
           _navigationService.navigateWithReplace('/intro-screen');

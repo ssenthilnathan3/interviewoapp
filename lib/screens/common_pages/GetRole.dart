@@ -8,14 +8,20 @@ import 'package:interviewo/utils/constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SelectionPage extends StatefulWidget {
-  const SelectionPage({Key? key}) : super(key: key);
+  final PageController pageController;
+
+  SelectionPage(
+    this.pageController, {
+    Key? key,
+  });
 
   @override
-  State<SelectionPage> createState() => _SelectionPageState();
+  _SelectionPageState createState() => _SelectionPageState(this.pageController);
 }
 
 class _SelectionPageState extends State<SelectionPage> {
   bool isLoggedIn = false, isRegistered = false;
+  final PageController pageController;
   List pageList = [
     {"image": "assets/images/1.png", "page": "student"},
     {
@@ -27,10 +33,11 @@ class _SelectionPageState extends State<SelectionPage> {
       "page": "organisation",
     },
   ];
+  _SelectionPageState(
+    this.pageController,
+  );
 
   List titles = ["To Learn", "To Teach", "To Partner"];
-
-  final NavigationService _navigationService = locator<NavigationService>();
 
   int selectedIndex = -1;
 
@@ -39,21 +46,9 @@ class _SelectionPageState extends State<SelectionPage> {
 
     await prefs.setBool('selectionPage', true);
     await prefs.setString('pageType', pageList[selectedIndex]['page']);
-  }
 
-  void _getInfo() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-
-    setState(() {
-      isLoggedIn = prefs.getBool('isLoggedIn')!;
-      isRegistered = prefs.getBool('isRegistered')!;
-    });
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    _getInfo();
+    pageController.nextPage(
+        duration: Duration(milliseconds: 100), curve: Curves.ease);
   }
 
   @override
@@ -96,14 +91,6 @@ class _SelectionPageState extends State<SelectionPage> {
                         selectedIndex = index;
                       });
                       _onSelected(context);
-                      Timer(Duration(seconds: 5), () {
-                        (isLoggedIn || isRegistered)
-                            ? _navigationService.navigateTo("/navSelect",
-                                arguments: {
-                                    'pageType': pageList[selectedIndex]['page']
-                                  })
-                            : _navigationService.navigateTo("/login");
-                      });
                     },
                     child: Container(
                       height: 150.0,

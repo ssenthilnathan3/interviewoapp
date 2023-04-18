@@ -39,7 +39,7 @@ class _IntroScreenState extends State<IntroScreen> {
                 fontWeight: FontWeight.bold,
                 fontSize: 15)),
         onPressed: () {
-          _navigationService.navigateTo("/selectionPage");
+          _navigationService.navigateTo("/commonPage");
         },
       ),
       pageBackgroundColor: IOTheme.IOGreen,

@@ -39,7 +39,10 @@ dependencies:
   flutter_zoom_drawer: ^3.0.4+1
   line_awesome_flutter: ^2.0.0
   lo_form: ^0.5.0
-
+  flutter_material_pickers:
+  adaptive_theme: ^3.2.0 
+  file_picker:  
+  numberpicker: ^2.1.2                                                                
   # firebase plugins
   firebase_core:
   firebase_messaging: ^14.1.3

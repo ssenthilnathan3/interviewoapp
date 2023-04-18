@@ -20,6 +20,20 @@ class _GoogleSignInPageState extends State<GoogleSignInPage> {
 
   String? name;
   String? email;
+  String pageType = "";
+
+  _getPageType() async {
+    final SharedPreferences _prefs = await SharedPreferences.getInstance();
+    setState(() {
+      pageType = _prefs.getString('pageType') ?? 'student';
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _getPageType();
+  }
 
   saveUserData() async {
     final SharedPreferences prefs = await _prefs;
@@ -57,7 +71,8 @@ class _GoogleSignInPageState extends State<GoogleSignInPage> {
                   print(e);
                 }
 
-                _navigationService.navigateTo('/home');
+                _navigationService.navigateTo('/navSelect',
+                    arguments: {'pageType': pageType});
               },
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
