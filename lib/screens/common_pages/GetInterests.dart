@@ -1,33 +1,74 @@
+import 'package:chips_choice/chips_choice.dart';
+
 import 'package:flutter/material.dart';
+import 'package:interviewo/services/NavigationService.dart';
+import 'package:interviewo/utils/Locator.dart';
 import 'package:interviewo/utils/constants.dart';
-import 'package:numberpicker/numberpicker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class AgePage extends StatefulWidget {
+class GetInterestsPage extends StatefulWidget {
   final PageController pageController;
-
-  AgePage(
-    this.pageController, {
-    Key? key,
-  });
+  const GetInterestsPage(this.pageController, {Key? key}) : super(key: key);
 
   @override
-  _AgePageState createState() => _AgePageState(this.pageController);
+  GetInterestsPageState createState() =>
+      GetInterestsPageState(this.pageController);
 }
 
-class _AgePageState extends State<AgePage> {
-  Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
+class GetInterestsPageState extends State<GetInterestsPage> {
   final PageController pageController;
+  // single choice value
+  int tag = 3;
+  GetInterestsPageState(this.pageController);
 
-  _AgePageState(this.pageController);
+  final NavigationService _navigationService = locator<NavigationService>();
 
-  int _currentIntValue = 16;
-  bool flag = true;
-  int? age;
+  // multiple choice value
+  List<String> tags = ['Education'];
+  String? pageType;
+
+  // list of string options
+  List<String> interests = [
+    "Technology",
+    "Health",
+    "Science",
+    "Fitness",
+    "Food and Cooking",
+    "Travel",
+    "Fashion",
+    "Beauty",
+    "Entertainment",
+    "Sports",
+    "Business",
+    "Finance",
+    "Politics",
+    "Education",
+    "Environment",
+    "Art and Culture",
+    "Social Issue",
+    "Personal Development",
+    "Psychology",
+    "History",
+  ];
+
+  List<String>? selected = [];
+  bool flag = false;
+
+  _getPageType() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      pageType = prefs.getString('pageType');
+    });
+  }
+
+  void initState() {
+    super.initState();
+    _getPageType();
+  }
 
   saveData() async {
-    final SharedPreferences prefs = await _prefs;
-    prefs.setString('age', age.toString());
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setStringList('interests', tags);
   }
 
   @override
@@ -42,7 +83,7 @@ class _AgePageState extends State<AgePage> {
               child: Align(
                 alignment: Alignment.topCenter,
                 child: Text(
-                  'Select your Age',
+                  'Pick your interests',
                   style: TextStyle(
                       color: IOTheme.IOGreen,
                       fontWeight: FontWeight.bold,
@@ -52,23 +93,21 @@ class _AgePageState extends State<AgePage> {
             ),
           ),
           Padding(
-            padding: EdgeInsets.only(top: 300, left: 50),
-            child: NumberPicker(
-              selectedTextStyle: TextStyle(
-                  color: IOTheme.IOGreen,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 15),
-              value: _currentIntValue,
-              minValue: 16,
-              maxValue: 80,
-              step: 1,
-              itemHeight: 100,
-              axis: Axis.horizontal,
-              onChanged: (value) => setState(() => _currentIntValue = value),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(16),
-                border: Border.all(color: Colors.black26),
+            padding: EdgeInsets.only(top: 300),
+            child: ChipsChoice<String>.multiple(
+              value: tags,
+              onChanged: (val) {
+                tags = val;
+              },
+              choiceItems: C2Choice.listFrom<String, String>(
+                source: interests,
+                value: (i, v) => v,
+                label: (i, v) => v,
+                tooltip: (i, v) => v,
               ),
+              choiceCheckmark: true,
+              textDirection: TextDirection.rtl,
+              wrapped: true,
             ),
           ),
           Positioned(
@@ -84,9 +123,8 @@ class _AgePageState extends State<AgePage> {
                     saveData();
                   }
                   flag = true;
-                  pageController.nextPage(
-                      duration: Duration(milliseconds: 100),
-                      curve: Curves.ease);
+                  _navigationService.navigateTo('/navSelect',
+                      arguments: {'pageType': pageType});
                 },
                 child: Row(
                   children: [

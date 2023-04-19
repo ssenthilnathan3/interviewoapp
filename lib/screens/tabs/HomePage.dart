@@ -10,7 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:interviewo/utils/constants.dart';
 import 'package:interviewo/widgets/DrawerWidget.dart';
 
-String selectedCategorie = "Adults";
+String selectedCategorie = "Health";
 
 class HomePage extends StatefulWidget {
   @override
@@ -18,7 +18,16 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  List<String> categories = ["Adults", "Childrens", "Womens", "Mens"];
+  List<String> categories = [
+    "Education",
+    "Environment",
+    "Art and Culture",
+    "Social Issue",
+    "Personal Development",
+    "Technology",
+    "Health",
+    "Science",
+  ];
   final NavigationService _navigationService = locator<NavigationService>();
 
   late List<SpecialityModel> specialities;
@@ -103,7 +112,7 @@ class _HomePageState extends State<HomePage> {
                   height: 20,
                 ),
                 Text(
-                  "Doctors",
+                  "Instructors",
                   style: TextStyle(
                       color: Colors.black87.withOpacity(0.8),
                       fontSize: 25,
@@ -357,6 +366,7 @@ class SpecialistTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: 150,
+      height: 100,
       margin: EdgeInsets.only(right: 16),
       decoration: BoxDecoration(
           color: backColor, borderRadius: BorderRadius.circular(24)),
@@ -366,7 +376,7 @@ class SpecialistTile extends StatelessWidget {
         children: <Widget>[
           Text(
             speciality,
-            style: TextStyle(color: Colors.white10, fontSize: 20),
+            style: TextStyle(color: Colors.white, fontSize: 20),
           ),
           SizedBox(
             height: 6,
@@ -375,11 +385,6 @@ class SpecialistTile extends StatelessWidget {
             "$noOfDoctors Doctors",
             style: TextStyle(color: Colors.white10, fontSize: 13),
           ),
-          Image.asset(
-            imgAssetPath,
-            height: 160,
-            fit: BoxFit.fitHeight,
-          )
         ],
       ),
     );

@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:interviewo/screens/common_pages/GetAgePage.dart';
+import 'package:interviewo/screens/common_pages/GetInterests.dart';
 import 'package:interviewo/screens/common_pages/TestPage.dart';
 import 'package:interviewo/screens/common_pages/GetRole.dart';
 import 'package:interviewo/viewmodels/CommonPageModel.dart';
@@ -48,6 +49,7 @@ class _CommonPageState extends State<CommonPage> {
                       children: <Widget>[
                         SelectionPage(pageController),
                         AgePage(pageController),
+                        GetInterestsPage(pageController),
                       ],
                     ),
                   ),

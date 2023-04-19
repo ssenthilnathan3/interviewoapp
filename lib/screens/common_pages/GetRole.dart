@@ -93,7 +93,7 @@ class _SelectionPageState extends State<SelectionPage> {
                       _onSelected(context);
                     },
                     child: Container(
-                      height: 150.0,
+                      height: 50.0,
                       child: Card(
                           elevation: 8,
                           shadowColor: Colors.grey.withOpacity(0.5),

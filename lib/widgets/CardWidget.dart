@@ -29,7 +29,7 @@ class _FeaturedCardState extends State<FeaturedCard> {
 
     return GestureDetector(
         onTap: () {
-          _navigationService.navigateWithReplace('/details');
+          _navigationService.navigateWithReplace('/instructor-detail');
         },
         child: Container(
             width: size.width * 0.65,

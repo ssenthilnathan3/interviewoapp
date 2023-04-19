@@ -62,6 +62,12 @@ class _IntroScreenState extends State<IntroScreen> {
                 height: 70,
               ),
               Image.asset('assets/images/slide_1.png'),
+              SizedBox(height: 30),
+              Text("Reinventing Education",
+                  style: TextStyle(
+                      color: IOTheme.IOBlue,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 28))
             ],
           ),
         ),
@@ -73,6 +79,12 @@ class _IntroScreenState extends State<IntroScreen> {
                 height: 70,
               ),
               Image.asset('assets/images/slide_2.png'),
+              SizedBox(height: 30),
+              Text("Reinventing Learning",
+                  style: TextStyle(
+                      color: IOTheme.IOBlue,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 28))
             ],
           ),
         ),
