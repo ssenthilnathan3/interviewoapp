@@ -21,13 +21,14 @@ class StartUpViewModel extends BaseModel {
         commonPage = prefs.getBool("commonPage") ?? false;
 
         if (introScreen) {
-          if (commonPage) {
-            _navigationService.navigateWithReplace('/commonPage');
-            // _navigationService.navigateWithReplace("/navSelect",
-            //     arguments: {'pageType': pageType});
-          } else {
-            _navigationService.navigateWithReplace('/commonPage');
-          }
+          // if (commonPage) {
+          //   _navigationService.navigateWithReplace('/commonPage');
+          //   // _navigationService.navigateWithReplace("/navSelect",
+          //   //     arguments: {'pageType': pageType});
+          // } else {
+          //   _navigationService.navigateWithReplace('/commonPage');
+          // }
+          _navigationService.navigateWithReplace('/intro-screen');
         } else {
           _navigationService.navigateWithReplace('/intro-screen');
         }

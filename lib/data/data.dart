@@ -6,7 +6,7 @@ List<SpecialityModel> getSpeciality() {
   List<SpecialityModel> specialities = [];
   SpecialityModel specialityModel1 = new SpecialityModel(
       noOfDoctors: 10,
-      speciality: "Cough & Cold",
+      speciality: "AR & VR",
       imgAssetPath: "assets/img1.png",
       backgroundColor: Color(0xffFBB97C));
 
@@ -15,7 +15,7 @@ List<SpecialityModel> getSpeciality() {
 
   SpecialityModel specialityModel2 = new SpecialityModel(
       noOfDoctors: 17,
-      speciality: "Heart Specialist",
+      speciality: "Web Development",
       imgAssetPath: "assets/img2.png",
       backgroundColor: Color(0xffF69383));
 
@@ -25,7 +25,7 @@ List<SpecialityModel> getSpeciality() {
 
   SpecialityModel specialityModel3 = new SpecialityModel(
       noOfDoctors: 17,
-      speciality: "Heart Specialist",
+      speciality: "Machine Learning",
       imgAssetPath: "assets/img2.png",
       backgroundColor: Color(0xffF69383));
 
@@ -37,7 +37,7 @@ List<SpecialityModel> getSpeciality() {
 List<PlaceModel> getPlace() {
   List<PlaceModel> places = [];
   PlaceModel placeModel1 = PlaceModel(
-      placeTitle: "Chandigar",
+      placeTitle: "Personality Development",
       locationShort: "CH",
       rateperpackage: 3000,
       rating: 3.5,
@@ -49,7 +49,7 @@ List<PlaceModel> getPlace() {
   places.add(placeModel1);
 
   PlaceModel placeModel2 = PlaceModel(
-      placeTitle: "Chennai",
+      placeTitle: "Resume Writing",
       locationShort: "CHE",
       rateperpackage: 3000,
       rating: 4.5,
@@ -62,7 +62,7 @@ List<PlaceModel> getPlace() {
   places.add(placeModel2);
 
   PlaceModel placeModel3 = PlaceModel(
-      placeTitle: "Erode",
+      placeTitle: "Interview Preparation Bundle",
       locationShort: "ERD",
       rateperpackage: 3000,
       rating: 4.5,

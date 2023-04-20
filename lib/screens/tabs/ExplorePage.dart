@@ -20,15 +20,11 @@ class ExplorePage extends StatefulWidget {
 class _ExplorePageState extends State<ExplorePage> {
   final NavigationService _navigationService = locator<NavigationService>();
   final List<String> _listItem = [
-    'assets/images/two.jpg',
-    'assets/images/three.jpg',
-    'assets/images/four.jpg',
-    'assets/images/five.jpg',
-    'assets/images/one.jpg',
-    'assets/images/two.jpg',
-    'assets/images/three.jpg',
-    'assets/images/four.jpg',
-    'assets/images/five.jpg',
+    'assets/images/two.png',
+    'assets/images/three.png',
+    'assets/images/four.png',
+    'assets/images/five.png',
+    'assets/images/one.png',
   ];
   var foodList = [];
   List<String> favListItem = [];
@@ -74,7 +70,7 @@ class _ExplorePageState extends State<ExplorePage> {
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
                     image: DecorationImage(
-                        image: AssetImage('assets/images/one.jpg'),
+                        image: AssetImage('assets/images/six.png'),
                         fit: BoxFit.cover)),
                 child: Container(
                   decoration: BoxDecoration(
@@ -88,7 +84,7 @@ class _ExplorePageState extends State<ExplorePage> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: <Widget>[
                       Text(
-                        "Lifestyle Sale",
+                        "Explore",
                         style: TextStyle(
                             color: Colors.white,
                             fontSize: 35,
@@ -105,7 +101,7 @@ class _ExplorePageState extends State<ExplorePage> {
                             color: Colors.white),
                         child: Center(
                             child: Text(
-                          "Shop Now",
+                          "Learn Now",
                           style: TextStyle(
                               color: Colors.grey[900],
                               fontWeight: FontWeight.bold),

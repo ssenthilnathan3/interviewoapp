@@ -2,17 +2,38 @@ import 'package:flutter/material.dart';
 import 'package:interviewo/services/NavigationService.dart';
 import 'package:interviewo/utils/Locator.dart';
 import 'package:interviewo/utils/constants.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class InstructorsPage extends StatelessWidget {
-  InstructorsPage({Key? key}) : super(key: key);
+class InstructorPage extends StatefulWidget {
+  const InstructorPage({Key? key}) : super(key: key);
 
+  @override
+  State<InstructorPage> createState() => _InstructorPageState();
+}
+
+class _InstructorPageState extends State<InstructorPage> {
+  String? pageType;
   final NavigationService _navigationService = locator<NavigationService>();
+
+  _getData() async {
+    final SharedPreferences _prefs = await SharedPreferences.getInstance();
+    setState(() {
+      pageType = _prefs.getString('pageType');
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _getData();
+  }
 
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
         onWillPop: () async {
-          _navigationService.navigateTo('/home');
+          _navigationService
+              .navigateTo('/navSelect', arguments: {'pageType': pageType});
           return false;
         },
         child: Scaffold(

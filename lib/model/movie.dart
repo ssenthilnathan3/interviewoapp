@@ -26,10 +26,10 @@ class Movie {
 List<Movie> movies = [
   Movie(
     id: 1,
-    title: "Bloodshot",
+    title: "Machine Learning",
     year: 2020,
     poster: "assets/images/poster_1.jpg",
-    backdrop: "assets/images/backdrop_1.jpg",
+    backdrop: "assets/images/backdrop_1.png",
     numOfRatings: 150212,
     rating: 7.3,
     criticsReview: 50,
@@ -61,10 +61,10 @@ List<Movie> movies = [
   ),
   Movie(
     id: 2,
-    title: "Ford v Ferrari ",
+    title: "Full Stack Development",
     year: 2019,
     poster: "assets/images/poster_2.jpg",
-    backdrop: "assets/images/backdrop_2.jpg",
+    backdrop: "assets/images/backdrop_2.png",
     numOfRatings: 150212,
     rating: 8.2,
     criticsReview: 50,
@@ -96,10 +96,10 @@ List<Movie> movies = [
   ),
   Movie(
     id: 1,
-    title: "Onward",
+    title: "Laravel 8",
     year: 2020,
     poster: "assets/images/poster_3.jpg",
-    backdrop: "assets/images/backdrop_3.jpg",
+    backdrop: "assets/images/backdrop_3.png",
     numOfRatings: 150212,
     rating: 7.6,
     criticsReview: 50,

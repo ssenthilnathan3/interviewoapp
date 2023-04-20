@@ -112,14 +112,11 @@ class _HomePageState extends State<HomePage> {
                   height: 20,
                 ),
                 Text(
-                  "Instructors",
+                  "Specialized Courses",
                   style: TextStyle(
                       color: Colors.black87.withOpacity(0.8),
                       fontSize: 25,
                       fontWeight: FontWeight.w600),
-                ),
-                SizedBox(
-                  height: 20,
                 ),
                 SizedBox(
                   height: 20,

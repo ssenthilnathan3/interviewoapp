@@ -42,7 +42,7 @@ class _IntroScreenState extends State<IntroScreen> {
           _navigationService.navigateTo("/commonPage");
         },
       ),
-      pageBackgroundColor: IOTheme.IOGreen,
+      pageBackgroundColor: Colors.white,
       finishButtonText: 'Register',
       onFinish: () {
         _navigationService.navigateTo("/login");
@@ -79,7 +79,7 @@ class _IntroScreenState extends State<IntroScreen> {
                 height: 70,
               ),
               Image.asset('assets/images/slide_2.png'),
-              SizedBox(height: 30),
+              SizedBox(height: 70),
               Text("Reinventing Learning",
                   style: TextStyle(
                       color: IOTheme.IOBlue,

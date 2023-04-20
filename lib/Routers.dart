@@ -57,7 +57,7 @@ class Routers {
 
       // ********** Detail Page Routes ***************************//
       case '/instructor-detail':
-        return MaterialPageRoute(builder: (_) => InstructorsPage());
+        return MaterialPageRoute(builder: (_) => InstructorPage());
 
       // ********** Default Route ***************************//
       default:
