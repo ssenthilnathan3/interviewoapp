@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:interviewo/screens/IntroScreen.dart';
 import 'package:interviewo/screens/auth/GoogleAuth.dart';
 import 'package:interviewo/screens/auth/LoginPage.dart';
+import 'package:interviewo/screens/auth/UserProfile.dart';
 import 'package:interviewo/screens/auth/RegisterPage.dart';
 import 'package:interviewo/screens/modules/ForInstructors.dart';
 import 'package:interviewo/screens/modules/ForOrganisations.dart';
@@ -24,13 +25,13 @@ class Routers {
         return MaterialPageRoute(builder: (_) => LoginScreen());
       case '/register':
         return MaterialPageRoute(builder: (_) => RegisterScreen());
-      case '/profileEdit':
-        return MaterialPageRoute(builder: (_) => ProfilePage());
+
       case '/settings':
         return MaterialPageRoute(builder: (_) => SettingsScreen());
       case '/intro-screen':
         return MaterialPageRoute(builder: (_) => IntroScreen());
-
+      case '/userProfile':
+        return MaterialPageRoute(builder: (_) => ProfilePageUI());
       case '/googleAuth':
         return MaterialPageRoute(builder: (_) => GoogleSignInPage());
 

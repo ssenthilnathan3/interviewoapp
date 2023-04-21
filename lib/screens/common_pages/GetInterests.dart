@@ -123,8 +123,7 @@ class GetInterestsPageState extends State<GetInterestsPage> {
                     saveData();
                   }
                   flag = true;
-                  _navigationService.navigateTo('/navSelect',
-                      arguments: {'pageType': pageType});
+                  _navigationService.navigateTo('/login');
                 },
                 child: Row(
                   children: [

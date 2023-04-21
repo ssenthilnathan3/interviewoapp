@@ -85,7 +85,7 @@ class _AgePageState extends State<AgePage> {
                   }
                   flag = true;
                   pageController.nextPage(
-                      duration: Duration(milliseconds: 100),
+                      duration: Duration(milliseconds: 200),
                       curve: Curves.ease);
                 },
                 child: Row(

@@ -13,7 +13,7 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  final TextEditingController _name = TextEditingController();
+  final TextEditingController _email = TextEditingController();
   final TextEditingController _password = TextEditingController();
   bool _passwordVisible = false;
   final _formKey = GlobalKey<FormState>();
@@ -80,7 +80,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       TextFormField(
-                        controller: _name,
+                        controller: _email,
                         cursorColor: Colors.white,
                         decoration: InputDecoration(
                           enabledBorder: OutlineInputBorder(

@@ -17,6 +17,7 @@ class SettingsScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: IOTheme.IOGreen,
+        elevation: 0,
         leading: IconButton(
             onPressed: () => Navigator.of(context).pop(),
             icon: const Icon(LineAwesomeIcons.angle_left)),
@@ -46,26 +47,6 @@ class SettingsScreen extends StatelessWidget {
                             image:
                                 AssetImage("assets/images/splashscreen.png"))),
                   ),
-                  Positioned(
-                    bottom: 0,
-                    right: 0,
-                    child: Container(
-                      width: 35,
-                      height: 35,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(100),
-                          color: IOTheme.IOBlue),
-                      child: IconButton(
-                          icon: Icon(
-                            LineAwesomeIcons.alternate_pencil,
-                            color: Colors.white,
-                            size: 20,
-                          ),
-                          onPressed: () {
-                            _navigationService.navigateTo('/profileEdit');
-                          }),
-                    ),
-                  ),
                 ],
               ),
               const SizedBox(height: 10),
@@ -73,21 +54,7 @@ class SettingsScreen extends StatelessWidget {
                   style: Theme.of(context).textTheme.headline4),
               Text("Profile Subheading",
                   style: Theme.of(context).textTheme.bodyText2),
-              // const SizedBox(height: 20),
 
-              /// -- BUTTON
-              // SizedBox(
-              //   width: 200,
-              //   child: ElevatedButton(
-              //     onPressed: () => Get.to(() => const UpdateProfileScreen()),
-              //     style: ElevatedButton.styleFrom(
-              //         backgroundColor: tPrimaryColor,
-              //         side: BorderSide.none,
-              //         shape: const StadiumBorder()),
-              //     child: const Text(tEditProfile,
-              //         style: TextStyle(color: tDarkColor)),
-              //   ),
-              // ),
               const SizedBox(height: 30),
               const Divider(),
               const SizedBox(height: 10),
@@ -102,7 +69,7 @@ class SettingsScreen extends StatelessWidget {
                   title: "Profile Info",
                   icon: LineAwesomeIcons.user_check,
                   onPress: () {
-                    _navigationService.navigateTo('/profileEdit');
+                    _navigationService.navigateTo('/userProfile');
                   }),
               const Divider(),
               const SizedBox(height: 10),

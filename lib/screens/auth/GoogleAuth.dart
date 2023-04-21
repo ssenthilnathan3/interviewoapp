@@ -71,8 +71,9 @@ class _GoogleSignInPageState extends State<GoogleSignInPage> {
                   print(e);
                 }
 
-                _navigationService.navigateTo('/navSelect',
-                    arguments: {'pageType': pageType});
+                _navigationService.navigateTo(
+                  '/commonPage',
+                );
               },
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
