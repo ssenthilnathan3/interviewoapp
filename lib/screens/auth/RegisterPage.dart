@@ -18,6 +18,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final TextEditingController _mobile = TextEditingController();
   final _formKey = GlobalKey<FormState>();
   bool _passwordVisible = false;
+  String? pageType;
   _saveRegister() async {
     SharedPreferences _prefs = await SharedPreferences.getInstance();
     _prefs.setBool("isRegistered", true);
@@ -26,6 +27,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
     _prefs.setString("email", _email.text);
     _prefs.setString("password", _password.text);
     _prefs.setString("mobile", _mobile.text);
+  }
+
+  _getPageType() async {
+    final SharedPreferences _prefs = await SharedPreferences.getInstance();
+    setState(() {
+      pageType = _prefs.getString('pageType') ?? 'student';
+    });
   }
 
   @override
@@ -204,7 +212,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             onPressed: () {
                               _formKey.currentState!.save();
                               if (_formKey.currentState!.validate()) {
-                                _navigationService.navigateTo("/home");
+                                _navigationService.navigateTo("/navSelect", arguments: {'pageType': pageType});
                                 _saveRegister();
                               }
                             },

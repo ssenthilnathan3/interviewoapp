@@ -22,8 +22,9 @@ class StartUpViewModel extends BaseModel {
 
         if (introScreen) {
           if (commonPage) {
-            _navigationService.navigateWithReplace("/navSelect",
-                arguments: {'pageType': pageType});
+            _navigationService.navigateWithReplace('/commonPage');
+            // _navigationService.navigateWithReplace("/navSelect",
+            //     arguments: {'pageType': pageType});
           } else {
             _navigationService.navigateWithReplace('/commonPage');
           }

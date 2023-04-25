@@ -36,17 +36,26 @@ class _ProfilePageUIState extends State<ProfilePageUI> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: Colors.white,
         appBar: AppBar(
           elevation: 0,
           backgroundColor: IOTheme.IOGreen,
           actions: [
-            IconButton(
-                icon: Icon(Icons.edit),
-                onPressed: () {
-                  setState(() {
-                    isEdit = !isEdit;
-                  });
-                })
+            !isEdit
+                ? IconButton(
+                    icon: Icon(Icons.edit),
+                    onPressed: () {
+                      setState(() {
+                        isEdit = !isEdit;
+                      });
+                    })
+                : IconButton(
+                    icon: Icon(Icons.check),
+                    onPressed: () {
+                      setState(() {
+                        isEdit = !isEdit;
+                      });
+                    })
           ],
         ),
         body: Column(
@@ -72,16 +81,25 @@ class _ProfilePageUIState extends State<ProfilePageUI> {
                       controller: _name,
                       cursorColor: Colors.white,
                       decoration: InputDecoration(
-                        hintText: isEdit ? name : "Enter your name",
+                        hintText: !isEdit ? name : "Enter your name",
                         enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: IOTheme.IOGreen)),
+                          borderSide: BorderSide(
+                            color: IOTheme.IOGreen,
+                          ),
+                        ),
+                        disabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Colors.white,
+                          ),
+                        ),
                         prefixIcon: Icon(Icons.email_outlined),
                         floatingLabelStyle: TextStyle(color: IOTheme.IOGreen),
                         prefixIconColor: IOTheme.IOGreen,
                         border: OutlineInputBorder(
                             borderSide: BorderSide(color: IOTheme.IOGreen)),
                         focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: IOTheme.IOGreen)),
+                            borderSide: BorderSide(color: IOTheme.IOGreen),
+                            borderRadius: BorderRadius.circular(50)),
                       ),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
@@ -96,16 +114,22 @@ class _ProfilePageUIState extends State<ProfilePageUI> {
                       controller: _email,
                       cursorColor: Colors.black,
                       decoration: InputDecoration(
+                        disabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Colors.white,
+                          ),
+                        ),
                         enabledBorder: OutlineInputBorder(
                             borderSide: BorderSide(color: IOTheme.IOGreen)),
                         prefixIcon: Icon(Icons.password_outlined),
-                        hintText: isEdit ? email : "Enter your email",
+                        hintText: !isEdit ? email : "Enter your email",
                         floatingLabelStyle: TextStyle(color: IOTheme.IOGreen),
                         prefixIconColor: IOTheme.IOBlue,
                         border: OutlineInputBorder(
                             borderSide: BorderSide(color: IOTheme.IOGreen)),
                         focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: IOTheme.IOGreen)),
+                            borderSide: BorderSide(color: IOTheme.IOGreen),
+                            borderRadius: BorderRadius.circular(50)),
                       ),
                       validator: (value) {
                         if (value == null || value.isEmpty) {

@@ -28,6 +28,8 @@ class _AgePageState extends State<AgePage> {
   saveData() async {
     final SharedPreferences prefs = await _prefs;
     prefs.setString('age', age.toString());
+    pageController.nextPage(
+        duration: Duration(milliseconds: 200), curve: Curves.ease);
   }
 
   @override
@@ -84,9 +86,6 @@ class _AgePageState extends State<AgePage> {
                     saveData();
                   }
                   flag = true;
-                  pageController.nextPage(
-                      duration: Duration(milliseconds: 200),
-                      curve: Curves.ease);
                 },
                 child: Row(
                   children: [

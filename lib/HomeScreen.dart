@@ -78,23 +78,13 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Stack(children: <Widget>[
                 widget.w!,
                 Positioned(
-                    bottom: 0,
-                    height: 70,
-                    child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(20)),
-                          color: Colors.white,
-                        ),
-                        width: MediaQuery.of(context).size.width)),
-                Positioned(
                   bottom: 0,
-                  height: 90,
                   width: MediaQuery.of(context).size.width,
                   child: BottomBar(
-                      bottomBarCallBack: bottomBarCallBack,
-                      positionCallBack: positionCallBack,
-                      position: position,
-                      w: widget.w),
+                    bottomBarCallBack: bottomBarCallBack,
+                    positionCallBack: positionCallBack,
+                    position: position,
+                  ),
                 ),
               ]),
             );

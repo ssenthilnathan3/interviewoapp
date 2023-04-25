@@ -22,13 +22,9 @@ class _LoginScreenState extends State<LoginScreen> {
   _saveLogin() async {
     SharedPreferences _prefs = await SharedPreferences.getInstance();
     _prefs.setBool("isLoggedIn", true);
-  }
 
-  _getPageType() async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-    setState(() {
-      pageType = prefs.getString('pageType');
-    });
+    _prefs.setString('name', _email.text);
+    _prefs.setString('name', _password.text);
   }
 
   @override
@@ -161,6 +157,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               backgroundColor: IOTheme.IOBlue.withOpacity(0.5)),
                           onPressed: () {
                             _formKey.currentState!.save();
+                            _saveLogin();
                           },
                           child: Text("LOGIN",
                               style: TextStyle(fontWeight: FontWeight.bold)),
