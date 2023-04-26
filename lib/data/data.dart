@@ -43,7 +43,8 @@ List<PlaceModel> getPlace() {
       rating: 3.5,
       description: "This is a short description",
       duration: 1000,
-      imgUrl: "https://www.holidify.com/images/bgImages/CHANDIGARH.jpg");
+      imgUrl:
+          "https://www.techniajz.com/uploads/blog_images/215b62a87f007193fe59d13ceee33d09-0x0.png");
 
   //1
   places.add(placeModel1);
@@ -56,7 +57,7 @@ List<PlaceModel> getPlace() {
       description: "This is a short description",
       duration: 1000,
       imgUrl:
-          "https://media.istockphoto.com/id/1226340114/photo/puratchi-thalaivar-dr-mgr-central-railway-station-chennai-central-railway-station-india.jpg?s=612x612&w=0&k=20&c=lZjBnWBBoLiApWZUUWP1Vl3XAVdKjYMcgGpItXv_L14=");
+          "https://www.columbia.ab.ca/wp-content/uploads/2017/09/Resume-Writing-Course-min.png");
 
   //1
   places.add(placeModel2);
@@ -69,7 +70,7 @@ List<PlaceModel> getPlace() {
       description: "This is a short description",
       duration: 1000,
       imgUrl:
-          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0Ov2ovL7F0oEK3UQDCPCVNe_7Lh6LTGLXmOPeGUm_&s");
+          "https://des.az.gov/sites/default/files/media/Interview-Preparation.png");
 
   //1
   places.add(placeModel3);

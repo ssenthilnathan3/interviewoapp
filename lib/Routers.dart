@@ -2,6 +2,7 @@ import 'package:interviewo/HomeScreen.dart';
 import 'package:interviewo/screens/ProfileEdit.dart';
 import 'package:interviewo/screens/SettingsPage.dart';
 import 'package:interviewo/screens/common_pages/CommonPage.dart';
+import 'package:interviewo/screens/tabs/VideoPage.dart';
 import 'package:interviewo/screens/tabs/detail_pages/CourseDetailPage.dart';
 
 import 'package:flutter/material.dart';
@@ -25,17 +26,19 @@ class Routers {
         return MaterialPageRoute(builder: (_) => LoginScreen());
       case '/register':
         return MaterialPageRoute(builder: (_) => RegisterScreen());
-
-      case '/settings':
-        return MaterialPageRoute(builder: (_) => SettingsScreen());
-      case '/intro-screen':
-        return MaterialPageRoute(builder: (_) => IntroScreen());
       case '/userProfile':
         return MaterialPageRoute(builder: (_) => ProfilePageUI());
       case '/googleAuth':
         return MaterialPageRoute(builder: (_) => GoogleSignInPage());
 
-      // ********** Home Page Routes ***************************//
+      case '/settings':
+        return MaterialPageRoute(builder: (_) => SettingsScreen());
+
+      case '/videoPage':
+        return MaterialPageRoute(builder: (_) => VideoInfo());
+
+      case '/intro-screen':
+        return MaterialPageRoute(builder: (_) => IntroScreen());
       case '/commonPage':
         return MaterialPageRoute(builder: (_) => CommonPage());
       case '/navSelect':

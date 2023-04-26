@@ -165,8 +165,9 @@ class SkillCard extends StatelessWidget {
   final store;
   final double width;
   final index;
+  final NavigationService _navigationService = locator<NavigationService>();
 
-  const SkillCard({
+  SkillCard({
     Key? key,
     required this.store,
     required this.index,
@@ -181,12 +182,9 @@ class SkillCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(12),
       ),
       child: GestureDetector(
-        onTap: () => Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => DetailScreen(movie: movies[index]),
-          ),
-        ),
+        onTap: () {
+          _navigationService.navigateTo('/videoPage');
+        },
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -292,7 +290,7 @@ class SkillCard extends StatelessWidget {
                   ],
                 ),
               ),
-            )
+            ),
           ],
         ),
       ),

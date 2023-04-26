@@ -22,7 +22,6 @@ class _DiscoverPageState extends State<DiscoverPage> {
               style: TextStyle(
                   color: IOTheme.IOBlue, fontWeight: FontWeight.bold)),
           elevation: 0,
-          backgroundColor: Colors.white,
         ),
         body: CustomScrollView(
           slivers: [
@@ -42,7 +41,7 @@ class _DiscoverPageState extends State<DiscoverPage> {
                     },
                     itemCount: movies.length,
                   )),
-                  SizedBox(height: 100),
+                  
                 ],
               ),
             ),

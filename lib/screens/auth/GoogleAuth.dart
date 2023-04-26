@@ -38,6 +38,8 @@ class _GoogleSignInPageState extends State<GoogleSignInPage> {
   saveUserData() async {
     final SharedPreferences prefs = await _prefs;
     prefs.setBool('isLoggedIn', true);
+    prefs.setString('name', name!);
+    prefs.setString('name', email!);
   }
 
   @override
@@ -71,9 +73,8 @@ class _GoogleSignInPageState extends State<GoogleSignInPage> {
                   print(e);
                 }
 
-                _navigationService.navigateTo(
-                  '/commonPage',
-                );
+                _navigationService.navigateTo('/navSelect',
+                    arguments: {'pageType': pageType});
               },
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,

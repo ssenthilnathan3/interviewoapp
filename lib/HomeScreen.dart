@@ -1,5 +1,6 @@
 import 'package:connectivity_wrapper/connectivity_wrapper.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:floating_bottom_navigation_bar/floating_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_zoom_drawer/config.dart';
@@ -51,6 +52,8 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBody: true,
+
       // backgroundColor: Colors.transparent,
       drawer: ZoomDrawer(
         controller: _ZoomDrawerController,
@@ -80,10 +83,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 Positioned(
                   bottom: 0,
                   width: MediaQuery.of(context).size.width,
-                  child: BottomBar(
+                  child: AppBottomBar(
                     bottomBarCallBack: bottomBarCallBack,
                     positionCallBack: positionCallBack,
                     position: position,
+                    w: widget.w!,
                   ),
                 ),
               ]),

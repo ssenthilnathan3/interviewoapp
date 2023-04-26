@@ -31,7 +31,6 @@ class _IntroScreenState extends State<IntroScreen> {
   Widget build(BuildContext context) {
     return OnBoardingSlider(
       headerBackgroundColor: IOTheme.IOGreen,
-      finishButtonColor: IOTheme.IOBlue,
       leading: TextButton(
         child: Text("Skip",
             style: TextStyle(
