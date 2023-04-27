@@ -75,34 +75,42 @@ class CastAndCrew extends StatelessWidget {
                     itemBuilder: (context, index) {
                       return InkWell(
                         onTap: () {
-                          _navigationService.navigateTo('/instructor-detail');
+                          _navigationService
+                              .navigateWithReplace('/instructor-detail');
                         },
-                        child: Column(
-                          children: <Widget>[
-                            Container(
-                              height: 80,
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Column(
+                            children: <Widget>[
+                              Container(
+                                height: 80,
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                ),
+                                child: Image.asset(
+                                  casts[index]['image'],
+                                ),
                               ),
-                              child: Image.asset(
-                                casts[index]['image'],
+                              SizedBox(height: kDefaultPadding / 2),
+                              Text(
+                                casts[index]['orginalName'],
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    color: kTextLightColor,
+                                    fontWeight: FontWeight.bold),
+                                maxLines: 2,
                               ),
-                            ),
-                            SizedBox(height: kDefaultPadding / 2),
-                            Text(
-                              casts[index]['orginalName'],
-                              textAlign: TextAlign.center,
-                              style: Theme.of(context).textTheme.bodyText2,
-                              maxLines: 2,
-                            ),
-                            SizedBox(height: kDefaultPadding / 4),
-                            Text(
-                              casts[index]['movieName'],
-                              maxLines: 1,
-                              textAlign: TextAlign.center,
-                              style: TextStyle(color: kTextLightColor),
-                            ),
-                          ],
+                              SizedBox(height: kDefaultPadding / 4),
+                              Text(
+                                casts[index]['movieName'],
+                                maxLines: 1,
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    color: kTextLightColor,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ],
+                          ),
                         ),
                       );
                     }),

@@ -7,6 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:interviewo/HomeScreen.dart';
 import 'package:provider/provider.dart';
 
+import '../screens/tabs/HomePage.dart';
+
 class MenuScreen extends StatelessWidget {
   final List<MenuClass> mainMenu;
   final void Function(int)? callback;
@@ -51,87 +53,7 @@ class MenuScreen extends StatelessWidget {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                // Spacer(),
-                Padding(
-                  padding: const EdgeInsets.only(
-                    bottom: 24.0,
-                    left: 24.0,
-                    right: 24.0,
-                  ),
-                  child: Container(
-                    width: 80,
-                    height: 80,
-                    decoration: BoxDecoration(
-                      color: Colors.grey[300],
-                      shape: BoxShape.circle,
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(
-                    bottom: 36.0,
-                    left: 24.0,
-                    right: 24.0,
-                  ),
-                  child: Text(
-                    tr("name"),
-                    style: const TextStyle(
-                      fontSize: 22,
-                      color: Colors.white,
-                      fontWeight: FontWeight.w900,
-                    ),
-                  ),
-                ),
-                Selector<MenuProvider, int>(
-                  selector: (_, provider) => provider.currentPage,
-                  builder: (_, index, __) => Column(
-                    mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      ...mainMenu
-                          .map(
-                            (item) => MenuItemWidget(
-                              key: Key(item.index.toString()),
-                              item: item,
-                              callback: callback,
-                              widthBox: const SizedBox(width: 16.0),
-                              style: style,
-                              selected: index == item.index,
-                            ),
-                          )
-                          .toList()
-                    ],
-                  ),
-                ),
-                // Spacer(),
-                Padding(
-                  padding: const EdgeInsets.only(left: 24.0, right: 24.0),
-                  child: OutlinedButton(
-                    style: OutlinedButton.styleFrom(
-                      side: const BorderSide(color: Colors.white, width: 2.0),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(16.0),
-                      ),
-                      textStyle: const TextStyle(color: Colors.white),
-                    ),
-                    onPressed: () {
-                      final languageCode =
-                          (context.locale.languageCode == "ar") ? "en" : "ar";
-
-                      context.setLocale(Locale(languageCode));
-                    },
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        tr("logout"),
-                        style: const TextStyle(fontSize: 18),
-                      ),
-                    ),
-                  ),
-                ),
-                // Spacer(),
-              ],
+              children: <Widget>[Text("Hello")],
             ),
           ),
         ),

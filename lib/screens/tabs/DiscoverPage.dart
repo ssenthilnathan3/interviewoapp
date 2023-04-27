@@ -15,6 +15,7 @@ class _DiscoverPageState extends State<DiscoverPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          backgroundColor: Colors.white,
           iconTheme: IconThemeData(
             color: IOTheme.IOBlue,
           ),
@@ -41,7 +42,7 @@ class _DiscoverPageState extends State<DiscoverPage> {
                     },
                     itemCount: movies.length,
                   )),
-                  
+                  SizedBox(height: 100),
                 ],
               ),
             ),

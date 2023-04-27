@@ -1,5 +1,9 @@
 import 'dart:math';
-
+import 'package:curved_drawer_fork/curved_drawer_fork.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_zoom_drawer/config.dart';
+import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:interviewo/widgets/CardWidget.dart';
 import 'package:interviewo/model/placemodel.dart';
 import 'package:interviewo/data/data.dart';
@@ -9,6 +13,8 @@ import 'package:interviewo/utils/Locator.dart';
 import 'package:flutter/material.dart';
 import 'package:interviewo/utils/constants.dart';
 import 'package:interviewo/widgets/DrawerWidget.dart';
+import 'package:interviewo/widgets/MenuWidget.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 String selectedCategorie = "Health";
 
@@ -40,107 +46,159 @@ class _HomePageState extends State<HomePage> {
 
     places = getPlace();
     specialities = getSpeciality();
+    _drawerView();
+  }
+
+  List<DrawerItem> drawerItems = [
+    DrawerItem(icon: Icon(Icons.school), label: "For Students"),
+    DrawerItem(icon: Icon(Icons.school), label: "For Universities"),
+    DrawerItem(icon: Icon(Icons.corporate_fare), label: "For Organisation"),
+    DrawerItem(icon: Icon(Icons.person), label: "For Instructors"),
+  ];
+
+  _drawerView() async {
+    final SharedPreferences _prefs = await SharedPreferences.getInstance();
+    String? pageType;
+
+    setState(() {
+      pageType = _prefs.getString('pageType');
+    });
+
+    if (pageType == "student") {
+      drawerItems.removeAt(0);
+    } else if (pageType == "instructor") {
+      drawerItems.removeAt(3);
+    } else if (pageType == "university") {
+      drawerItems.removeAt(1);
+    } else {
+      drawerItems.removeAt(2);
+    }
   }
 
   @override
   Widget build(BuildContext context) {
+    final GlobalKey<ScaffoldState> _scaffoldKey =
+        new GlobalKey<ScaffoldState>();
     return Scaffold(
-        body: CustomScrollView(slivers: [
-      SliverPersistentHeader(
-        pinned: true,
-        floating: false,
-        delegate: SearchHeader(
-          icon: Icons.person_2_outlined,
-          title: 'InterviewO',
-          search: _Search(),
-        ),
-      ),
-      SliverFillRemaining(
-        hasScrollBody: true,
-        child: SingleChildScrollView(
-          child: Container(
-            color: Colors.white10,
-            padding: EdgeInsets.symmetric(vertical: 10, horizontal: 24),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Text(
-                  "Categories",
-                  style: TextStyle(
-                      color: Colors.black87.withOpacity(0.8),
-                      fontSize: 25,
-                      fontWeight: FontWeight.w600),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                Container(
-                  height: 30,
-                  child: ListView.builder(
-                      itemCount: categories.length,
-                      shrinkWrap: true,
-                      physics: ClampingScrollPhysics(),
-                      scrollDirection: Axis.horizontal,
-                      itemBuilder: (context, index) {
-                        return CategorieTile(
-                          categorie: categories[index],
-                          isSelected: selectedCategorie == categories[index],
-                          context: this,
-                        );
-                      }),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                Container(
-                  height: 250,
-                  child: ListView.builder(
-                      itemCount: specialities.length,
-                      shrinkWrap: true,
-                      physics: ClampingScrollPhysics(),
-                      scrollDirection: Axis.horizontal,
-                      itemBuilder: (context, index) {
-                        return SpecialistTile(
-                          imgAssetPath: specialities[index].imgAssetPath,
-                          speciality: specialities[index].speciality,
-                          noOfDoctors: specialities[index].noOfDoctors,
-                          backColor: specialities[index].backgroundColor,
-                        );
-                      }),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                Text(
-                  "Specialized Courses",
-                  style: TextStyle(
-                      color: Colors.black87.withOpacity(0.8),
-                      fontSize: 25,
-                      fontWeight: FontWeight.w600),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                Container(
-                  height: 200,
-                  child: ListView.builder(
-                      itemCount: places.length,
-                      shrinkWrap: true,
-                      physics: ClampingScrollPhysics(),
-                      scrollDirection: Axis.horizontal,
-                      itemBuilder: (context, index) {
-                        return FeaturedCard(
-                          placeModel: places[index],
-                        );
-                      }),
-                ),
-                
-              ],
-            ),
+        key: _scaffoldKey,
+        drawer: SafeArea(
+          child: CurvedDrawer(
+            color: IOTheme.IOBlue,
+            labelColor: Colors.black54,
+            width: 100,
+            animationDuration: Duration(milliseconds: 500),
+            items: drawerItems,
+            onTap: (index) {
+              if (index == 0) {
+              } else if (index == 1) {
+                _navigationService.navigateTo('/navSelect',
+                    arguments: {'pageType': 'universities'});
+              } else if (index == 2) {
+                _navigationService.navigateTo('/navSelect',
+                    arguments: {'pageType': 'organisations'});
+              } else {
+                _navigationService.navigateTo('/navSelect',
+                    arguments: {'pageType': 'instructor'});
+              }
+            },
           ),
         ),
-      )
-    ]));
+        body: CustomScrollView(slivers: [
+          SliverPersistentHeader(
+            pinned: true,
+            floating: false,
+            delegate: SearchHeader(
+              scaffoldKey: _scaffoldKey,
+              icon: Icons.person_2_outlined,
+              title: 'InterviewO',
+              search: _Search(),
+            ),
+          ),
+          SliverFillRemaining(
+            hasScrollBody: true,
+            child: SingleChildScrollView(
+              child: Container(
+                color: Colors.white10,
+                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 24),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Row(
+                      children: [
+                        Text(
+                          "Categories",
+                          style: TextStyle(
+                              color: Colors.black87.withOpacity(0.8),
+                              fontSize: 25,
+                              fontWeight: FontWeight.w600),
+                        ),
+                        Spacer(),
+                        ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(20)),
+                              elevation: 0,
+                              backgroundColor: Colors.grey,
+                            ),
+                            child: Text("More",
+                                style: TextStyle(color: Colors.black)),
+                            onPressed: () {
+                              _navigationService
+                                  .navigateWithReplace('/course-categories');
+                            })
+                      ],
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Container(
+                      height: 250,
+                      child: ListView.builder(
+                          itemCount: specialities.length,
+                          shrinkWrap: true,
+                          physics: ClampingScrollPhysics(),
+                          scrollDirection: Axis.horizontal,
+                          itemBuilder: (context, index) {
+                            return CourseTile(
+                              imagePath: specialities[index].imagePath,
+                              speciality: specialities[index].speciality,
+                              noOfDoctors: specialities[index].noOfDoctors,
+                              backColor: specialities[index].backgroundColor,
+                            );
+                          }),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Text(
+                      "Specialized Courses",
+                      style: TextStyle(
+                          color: Colors.black87.withOpacity(0.8),
+                          fontSize: 25,
+                          fontWeight: FontWeight.w600),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Container(
+                      height: 200,
+                      child: ListView.builder(
+                          itemCount: places.length,
+                          shrinkWrap: true,
+                          physics: ClampingScrollPhysics(),
+                          scrollDirection: Axis.horizontal,
+                          itemBuilder: (context, index) {
+                            return FeaturedCard(
+                              placeModel: places[index],
+                            );
+                          }),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          )
+        ]));
   }
 }
 
@@ -201,6 +259,18 @@ class __SearchState extends State<_Search> {
   }
 }
 
+class MenuProvider extends ChangeNotifier {
+  int _currentPage = 0;
+
+  int get currentPage => _currentPage;
+
+  void updateCurrentPage(int index) {
+    if (index == currentPage) return;
+    _currentPage = index;
+    notifyListeners();
+  }
+}
+
 class SearchHeader extends SliverPersistentHeaderDelegate {
   final double minTopBarHeight = 100;
   final double maxTopBarHeight = 150;
@@ -208,12 +278,13 @@ class SearchHeader extends SliverPersistentHeaderDelegate {
   final IconData icon;
 
   final Widget search;
+  final scaffoldKey;
 
-  SearchHeader({
-    required this.title,
-    required this.icon,
-    required this.search,
-  });
+  SearchHeader(
+      {required this.title,
+      required this.icon,
+      required this.search,
+      required this.scaffoldKey});
 
   final NavigationService _navigationService = locator<NavigationService>();
 
@@ -237,6 +308,13 @@ class SearchHeader extends SliverPersistentHeaderDelegate {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
+            IconButton(
+              icon: Icon(Icons.menu, color: Colors.white),
+              onPressed: () => scaffoldKey.currentState.openDrawer(),
+            ),
+            const SizedBox(
+              width: 20,
+            ),
             Text(title,
                 style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                     color: Colors.white, fontWeight: FontWeight.bold)),
@@ -348,39 +426,47 @@ class _CategorieTileState extends State<CategorieTile> {
   }
 }
 
-class SpecialistTile extends StatelessWidget {
-  final String imgAssetPath;
+class CourseTile extends StatelessWidget {
   final String speciality;
+  final String imagePath;
+
   final int noOfDoctors;
   final Color backColor;
-  SpecialistTile(
-      {required this.imgAssetPath,
-      required this.speciality,
+  CourseTile(
+      {required this.speciality,
+      required this.imagePath,
       required this.noOfDoctors,
       required this.backColor});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 150,
-      height: 100,
+      width: 200,
+      height: 75,
       margin: EdgeInsets.only(right: 16),
       decoration: BoxDecoration(
           color: backColor, borderRadius: BorderRadius.circular(24)),
       padding: EdgeInsets.only(top: 16, right: 16, left: 16),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
+          CircleAvatar(
+            backgroundColor: Colors.transparent,
+            child: Image.network(imagePath),
+          ),
+          SizedBox(height: 10),
           Text(
             speciality,
-            style: TextStyle(color: Colors.white, fontSize: 20),
+            style: TextStyle(
+                color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
           ),
           SizedBox(
             height: 6,
           ),
           Text(
-            "$noOfDoctors Doctors",
-            style: TextStyle(color: Colors.white10, fontSize: 13),
+            "$noOfDoctors Courses",
+            style: TextStyle(color: Colors.white, fontSize: 13),
           ),
         ],
       ),

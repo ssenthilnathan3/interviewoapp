@@ -245,32 +245,18 @@ class SkillCard extends StatelessWidget {
                         )
                       ],
                     ),
-                    Text(
-                      store[index].numOfRatings.toString(),
-                      overflow: TextOverflow.ellipsis,
-                      style: const TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
                     Row(
                       children: [
-                        const Icon(
-                          Icons.date_range,
-                          size: 18,
-                          color: Color(0xFF14213d),
-                        ),
-                        Text(
-                          store[index].year.toString(),
-                          style: const TextStyle(
-                            color: Colors.black,
-                            fontSize: 12,
+                        Container(
+                          child: Row(
+                            children: [Rating(rating: 4.5)],
                           ),
                         ),
                         Spacer(),
                         ElevatedButton(
                             onPressed: () {},
                             style: ElevatedButton.styleFrom(
+                              elevation: 0,
                               minimumSize: const Size(80, 30),
                               side: const BorderSide(
                                   width: 1, color: Color(0xFFe5e5e5)),

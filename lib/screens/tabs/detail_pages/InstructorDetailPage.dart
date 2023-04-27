@@ -32,8 +32,7 @@ class _InstructorPageState extends State<InstructorPage> {
   Widget build(BuildContext context) {
     return WillPopScope(
         onWillPop: () async {
-          _navigationService
-              .navigateTo('/navSelect', arguments: {'pageType': pageType});
+          Navigator.pop(context);
           return false;
         },
         child: Scaffold(

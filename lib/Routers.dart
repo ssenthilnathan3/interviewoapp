@@ -3,6 +3,7 @@ import 'package:interviewo/screens/ProfileEdit.dart';
 import 'package:interviewo/screens/SettingsPage.dart';
 import 'package:interviewo/screens/common_pages/CommonPage.dart';
 import 'package:interviewo/screens/tabs/VideoPage.dart';
+import 'package:interviewo/screens/tabs/detail_pages/CourseCategories.dart';
 import 'package:interviewo/screens/tabs/detail_pages/CourseDetailPage.dart';
 
 import 'package:flutter/material.dart';
@@ -59,6 +60,8 @@ class Routers {
           return MaterialPageRoute(builder: (_) => HomeScreen(w: HomePage()));
         }
 
+      case '/course-categories':
+        return MaterialPageRoute(builder: (_) => CourseCategories());
       // ********** Detail Page Routes ***************************//
       case '/instructor-detail':
         return MaterialPageRoute(builder: (_) => InstructorPage());

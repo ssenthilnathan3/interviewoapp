@@ -7,7 +7,8 @@ List<SpecialityModel> getSpeciality() {
   SpecialityModel specialityModel1 = new SpecialityModel(
       noOfDoctors: 10,
       speciality: "AR & VR",
-      imgAssetPath: "assets/img1.png",
+      imagePath:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2RzGeikAnS5cPgbYPavFrQmzbb6FVoTjWPw&usqp=CAU",
       backgroundColor: Color(0xffFBB97C));
 
   //1
@@ -16,7 +17,8 @@ List<SpecialityModel> getSpeciality() {
   SpecialityModel specialityModel2 = new SpecialityModel(
       noOfDoctors: 17,
       speciality: "Web Development",
-      imgAssetPath: "assets/img2.png",
+      imagePath:
+          "https://media.geeksforgeeks.org/wp-content/cdn-uploads/20221222184908/web-development1.png",
       backgroundColor: Color(0xffF69383));
 
   //2
@@ -26,7 +28,8 @@ List<SpecialityModel> getSpeciality() {
   SpecialityModel specialityModel3 = new SpecialityModel(
       noOfDoctors: 17,
       speciality: "Machine Learning",
-      imgAssetPath: "assets/img2.png",
+      imagePath:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSF-KHSqTu4Yf42u0FPBQvR2pRO80CC_jQuvA&usqp=CAU",
       backgroundColor: Color(0xffF69383));
 
   specialities.add(specialityModel3);

@@ -1,12 +1,9 @@
-import 'package:bottom_navy_bar/bottom_navy_bar.dart';
-import 'package:floating_bottom_navigation_bar/floating_bottom_navigation_bar.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-
 import 'package:interviewo/screens/tabs/DiscoverPage.dart';
 import 'package:interviewo/screens/tabs/ExplorePage.dart';
-import 'package:sliding_clipped_nav_bar/sliding_clipped_nav_bar.dart';
+import 'package:stylish_bottom_bar/model/bar_items.dart';
+import 'package:stylish_bottom_bar/stylish_bottom_bar.dart';
 
 class AppBottomBar extends StatefulWidget {
   final Function bottomBarCallBack;
@@ -80,18 +77,21 @@ class _AppBottomBarState extends State<AppBottomBar> {
     Color(0xFFFF5757)
   ];
 
-  var barItems = [
-    FloatingNavbarItem(
-      title: 'Explore',
-      icon: Icons.folder_special,
+  List<BottomBarItem> barItems = [
+    BottomBarItem(
+      title: Text('Explore'),
+      icon: Icon(Icons.folder_special),
+      backgroundColor: Color(0xFF7BF4AF),
     ),
-    FloatingNavbarItem(
-      title: 'Home',
-      icon: Icons.accessibility_new,
+    BottomBarItem(
+      title: Text('Home'),
+      icon: Icon(Icons.accessibility_new),
+      backgroundColor: Color(0xFF5FCFEB),
     ),
-    FloatingNavbarItem(
-      title: 'Discover',
-      icon: Icons.favorite,
+    BottomBarItem(
+      title: Text('Discover'),
+      icon: Icon(Icons.favorite),
+      backgroundColor: Color(0xFFFF5757),
     ),
 
     /// Add more BarItem if you want
@@ -100,19 +100,22 @@ class _AppBottomBarState extends State<AppBottomBar> {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop: _handleWillPop,
-      // onWillPop: (() => _onBackPressed(context)) as Future<bool> Function(),
-      child: FloatingNavbar(
-        backgroundColor: Colors.white,
-        onTap: _onTap,
-        currentIndex: activeIndex,
-        elevation: 0,
-        borderRadius: 20,
-        unselectedItemColor: Colors.black,
-        selectedItemColor: activeColorList[activeIndex],
-        items: barItems,
-      ),
-    );
+        onWillPop: _handleWillPop,
+        // onWillPop: (() => _onBackPressed(context)) as Future<bool> Function(),
+        child: StylishBottomBar(
+          elevation: 0,
+          option: BubbleBarOptions(
+            barStyle: BubbleBarStyle.horizotnal,
+            padding: EdgeInsets.symmetric(horizontal: 15),
+            // barStyle: BubbleBarStyle.vertical,
+            bubbleFillStyle: BubbleFillStyle.fill,
+            // bubbleFillStyle: BubbleFillStyle.outlined,
+            opacity: 0.3,
+          ),
+          items: barItems,
+          currentIndex: activeIndex,
+          onTap: _onTap,
+        ));
   }
 
   Future<bool> _handleWillPop() async {

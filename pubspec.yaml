@@ -48,6 +48,7 @@ dependencies:
   numberpicker: ^2.1.2
   chips_choice: ^3.0.0
   email_validator: ^2.1.17
+  carousel_slider: ^4.2.1
 
 
 
@@ -63,6 +64,10 @@ dependencies:
   stacked: ^3.2.0
   path: ^1.8.3
   path_provider: ^2.0.14
+   
+  stylish_bottom_bar: ^1.0.0
+  shaky_animated_listview: ^0.0.5
+  curved_drawer_fork: ^0.0.1+1
   
   string_validator: ^1.0.0
   
