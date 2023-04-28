@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:interviewo/widgets/GridView.dart';
 import 'package:interviewo/screens/tabs/DiscoverPage.dart';
 import 'package:interviewo/screens/tabs/ExplorePage.dart';
 import 'package:stylish_bottom_bar/model/bar_items.dart';
@@ -43,11 +44,7 @@ class _AppBottomBarState extends State<AppBottomBar> {
   void initState() {
     super.initState();
     setState(() {
-      currentTab = [
-        ExplorePage(),
-        widget.w!,
-        DiscoverPage(),
-      ];
+      currentTab = [ExplorePage(), widget.w!, CardGridScreen()];
     });
 
     print(widget.position);

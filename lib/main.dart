@@ -23,7 +23,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  // This widget is the root of your application.
+  
   @override
   Widget build(BuildContext context) {
     return ConnectivityAppWrapper(
@@ -37,9 +37,6 @@ class _MyAppState extends State<MyApp> {
           primarySwatch: Colors.blue,
         ),
         home: SplashScreen(),
-        // locale: context.locale,
-        // supportedLocales: context.supportedLocales,
-        // localizationsDelegates: context.localizationDelegates,
       ),
     );
   }

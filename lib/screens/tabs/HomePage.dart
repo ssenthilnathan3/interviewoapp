@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:math';
 import 'package:curved_drawer_fork/curved_drawer_fork.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -50,6 +51,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   List<DrawerItem> drawerItems = [
+    DrawerItem(icon: Icon(Icons.person_3_outlined), label: "For You"),
     DrawerItem(icon: Icon(Icons.school), label: "For Students"),
     DrawerItem(icon: Icon(Icons.school), label: "For Universities"),
     DrawerItem(icon: Icon(Icons.corporate_fare), label: "For Organisation"),
@@ -65,13 +67,13 @@ class _HomePageState extends State<HomePage> {
     });
 
     if (pageType == "student") {
-      drawerItems.removeAt(0);
+      drawerItems.removeAt(1);
     } else if (pageType == "instructor") {
       drawerItems.removeAt(3);
     } else if (pageType == "university") {
-      drawerItems.removeAt(1);
+      drawerItems.removeAt(4);
     } else {
-      drawerItems.removeAt(2);
+      drawerItems.removeAt(3);
     }
   }
 
@@ -89,17 +91,20 @@ class _HomePageState extends State<HomePage> {
             animationDuration: Duration(milliseconds: 500),
             items: drawerItems,
             onTap: (index) {
-              if (index == 0) {
-              } else if (index == 1) {
-                _navigationService.navigateTo('/navSelect',
-                    arguments: {'pageType': 'universities'});
-              } else if (index == 2) {
-                _navigationService.navigateTo('/navSelect',
-                    arguments: {'pageType': 'organisations'});
-              } else {
-                _navigationService.navigateTo('/navSelect',
-                    arguments: {'pageType': 'instructor'});
-              }
+              Timer(Duration(seconds: 3), () {
+                if (index == 0) {
+                  _navigationService.navigateTo('/userProfile');
+                } else if (index == 1) {
+                  _navigationService.navigateTo('/navSelect',
+                      arguments: {'pageType': 'universities'});
+                } else if (index == 2) {
+                  _navigationService.navigateTo('/navSelect',
+                      arguments: {'pageType': 'organisations'});
+                } else {
+                  _navigationService.navigateTo('/navSelect',
+                      arguments: {'pageType': 'instructor'});
+                }
+              });
             },
           ),
         ),

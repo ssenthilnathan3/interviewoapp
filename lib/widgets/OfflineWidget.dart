@@ -8,7 +8,7 @@ class OfflineWidget extends StatelessWidget {
         fit: StackFit.expand,
         children: [
           Image.asset(
-            "assets/images/connection_lost.jpg",
+            "assets/images/connectionlost.png",
             fit: BoxFit.cover,
           ),
           Positioned(

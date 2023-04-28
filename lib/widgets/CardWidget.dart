@@ -1,9 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:interviewo/model/movie.dart';
 import 'package:interviewo/model/placemodel.dart';
-import 'package:interviewo/screens/tabs/detail_pages/CourseDetailPage.dart';
 import 'package:interviewo/services/NavigationService.dart';
 import 'package:interviewo/utils/Locator.dart';
 
