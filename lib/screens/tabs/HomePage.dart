@@ -37,7 +37,7 @@ class _HomePageState extends State<HomePage> {
   ];
   final NavigationService _navigationService = locator<NavigationService>();
 
-  late List<SpecialityModel> specialities;
+  late List<CourseModel> courses;
   late List<PlaceModel> places;
 
   @override
@@ -46,7 +46,7 @@ class _HomePageState extends State<HomePage> {
     super.initState();
 
     places = getPlace();
-    specialities = getSpeciality();
+    courses = getCourses();
     _drawerView();
   }
 
@@ -159,16 +159,16 @@ class _HomePageState extends State<HomePage> {
                     Container(
                       height: 250,
                       child: ListView.builder(
-                          itemCount: specialities.length,
+                          itemCount: courses.length,
                           shrinkWrap: true,
                           physics: ClampingScrollPhysics(),
                           scrollDirection: Axis.horizontal,
                           itemBuilder: (context, index) {
                             return CourseTile(
-                              imagePath: specialities[index].imagePath,
-                              speciality: specialities[index].speciality,
-                              noOfDoctors: specialities[index].noOfDoctors,
-                              backColor: specialities[index].backgroundColor,
+                              imagePath: courses[index].imagePath,
+                              speciality: courses[index].speciality,
+                              noOfDoctors: courses[index].noOfDoctors,
+                              backColor: courses[index].backgroundColor,
                             );
                           }),
                     ),
@@ -176,7 +176,7 @@ class _HomePageState extends State<HomePage> {
                       height: 20,
                     ),
                     Text(
-                      "Specialized Courses",
+                      "Courses",
                       style: TextStyle(
                           color: Colors.black87.withOpacity(0.8),
                           fontSize: 25,

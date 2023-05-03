@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 
-class SpecialityModel {
+class CourseModel {
   String imagePath;
   String speciality;
   int noOfDoctors;
   Color backgroundColor;
-  SpecialityModel(
+  CourseModel(
       {required this.imagePath,
       required this.speciality,
       required this.noOfDoctors,

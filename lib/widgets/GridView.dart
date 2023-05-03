@@ -32,6 +32,7 @@ class EmptyCard extends StatelessWidget {
   }
 }
 
+
 class CardGridScreen extends StatefulWidget {
   const CardGridScreen({Key? key}) : super(key: key);
 

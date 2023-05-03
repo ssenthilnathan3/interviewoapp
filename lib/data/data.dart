@@ -2,9 +2,11 @@ import 'package:interviewo/model/placemodel.dart';
 import 'package:interviewo/model/speciality.dart';
 import 'package:flutter/cupertino.dart';
 
-List<SpecialityModel> getSpeciality() {
-  List<SpecialityModel> specialities = [];
-  SpecialityModel specialityModel1 = new SpecialityModel(
+
+
+List<CourseModel> getCourses() {
+  List<CourseModel> specialities = [];
+  CourseModel CourseModel1 = new CourseModel(
       noOfDoctors: 10,
       speciality: "AR & VR",
       imagePath:
@@ -12,9 +14,9 @@ List<SpecialityModel> getSpeciality() {
       backgroundColor: Color(0xffFBB97C));
 
   //1
-  specialities.add(specialityModel1);
+  specialities.add(CourseModel1);
 
-  SpecialityModel specialityModel2 = new SpecialityModel(
+  CourseModel CourseModel2 = new CourseModel(
       noOfDoctors: 17,
       speciality: "Web Development",
       imagePath:
@@ -23,16 +25,16 @@ List<SpecialityModel> getSpeciality() {
 
   //2
 
-  specialities.add(specialityModel2);
+  specialities.add(CourseModel2);
 
-  SpecialityModel specialityModel3 = new SpecialityModel(
+  CourseModel CourseModel3 = new CourseModel(
       noOfDoctors: 17,
       speciality: "Machine Learning",
       imagePath:
           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSF-KHSqTu4Yf42u0FPBQvR2pRO80CC_jQuvA&usqp=CAU",
       backgroundColor: Color(0xffF69383));
 
-  specialities.add(specialityModel3);
+  specialities.add(CourseModel3);
 
   return specialities;
 }

@@ -1,5 +1,11 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
+import 'package:interviewo/data/data.dart';
+import 'package:interviewo/widgets/CardCarousel.dart';
+import 'package:interviewo/widgets/CardWidget.dart';
+import 'package:interviewo/widgets/GridView.dart';
 
 class ForUniversitiesPage extends StatefulWidget {
   const ForUniversitiesPage({Key? key}) : super(key: key);
@@ -17,6 +23,14 @@ class _ForUniversitiesPageState extends State<ForUniversitiesPage> {
     'https://images.unsplash.com/photo-1508704019882-f9cf40e475b4?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=8c6e5e3aba713b17aa1fe71ab4f0ae5b&auto=format&fit=crop&w=1352&q=80',
     'https://images.unsplash.com/photo-1519985176271-adb1088fa94c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a0c8d632e977f94e5d312d9893258f59&auto=format&fit=crop&w=1355&q=80'
   ];
+  List? list;
+
+  @override
+  void initState() {
+    super.initState();
+    list = getPlace();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,8 +63,8 @@ class _ForUniversitiesPageState extends State<ForUniversitiesPage> {
                 items: items
                     .map((item) => Container(
                           decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              color: Colors.black),
+                            borderRadius: BorderRadius.circular(20),
+                          ),
                           child: Center(
                               child: Image.network(item,
                                   fit: BoxFit.fill, width: 1000)),
@@ -78,6 +92,36 @@ class _ForUniversitiesPageState extends State<ForUniversitiesPage> {
               ),
               SizedBox(
                 height: 30,
+              ),
+              Card(
+                elevation: 2,
+                child: Container(
+                    width: MediaQuery.of(context).size.width - 20,
+                    height: 100,
+                    decoration: BoxDecoration(
+                        color: Color(0xffffafbd),
+                        shape: BoxShape.rectangle,
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                        gradient: LinearGradient(
+                            colors: [Color(0xffffafbd), Color(0xffffc3a0)])),
+                    child: Padding(
+                      padding: const EdgeInsets.only(right: 200),
+                      child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Text(
+                              "Dashboard",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20),
+                            ),
+                            Spacer(),
+                            IconButton(
+                                icon: Icon(CupertinoIcons.forward),
+                                onPressed: () {})
+                          ]),
+                    )),
               ),
             ],
           ),

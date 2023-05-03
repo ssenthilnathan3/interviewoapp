@@ -26,16 +26,13 @@ class _ExplorePageState extends State<ExplorePage> {
     'assets/images/five.png',
     'assets/images/one.png',
   ];
-  var foodList = [];
+
   List<String> favListItem = [];
-  void getFoods() async {
-    foodList = await bringTheFoods();
-  }
 
   @override
   void initState() {
     super.initState();
-    getFoods();
+    
     // _getWishList();
   }
 
